@@ -4,58 +4,77 @@ A hub for travel enthusiasts to store information and see public information sto
 
 
 
-### 1. Working Prototype (to do later)
-(Example) You can access a working prototype of the React app here: https://travel-diary-capstone.vercel.app/ and Node app here: https://travel-diary-capstone.herokuapp.com/
+### 1. Working Prototype
+You can access a working prototype of the React app here: https://travel-diary-capstone.vercel.app/ and Node app here: https://travel-diary-capstone.herokuapp.com/
 
 
 
-### 2. User Stories (to do now)
+### 2. User Stories (to do now) one user story for every greybox wireframe (page specific)
+(user story for each functionality)
 This app is for two types of users: a visitor and a logged-in user
 
-###### (Example) Landing Page (Importance - High) (Est: 1h)
+1--user stories
+2--grey box wireframe html only
+3--add css responsive and accessible to the grey box wireframes
+4--reactify the grey-box wireframes using this guide here (https://github.com/mariusbanea/web-developers-toolkit/blob/master/capstone-projects/steps-to-convert-html-to-react.md)
+
+###### Landing Page 
 * as a visitor
-* I want to understand what I can do with this app (or sign up, or log in)
+* I want to understand what I can do with this app and view public information (or sign up, or log in)
 * so I can decide if I want to use it
 
-###### (Example) Login Page (Importance - High) (Est: 3h)
+
+###### Login Page 
 * As a returning register user
 * I want to enter my password and username to use this app,
 * So I can have access to my account.
 
-###### (Example) Sign Up (Importance - High)  (Est: 3h)
+###### Sign Up 
 * As a visitor
 * I want to register to use this app
 * So I can create a personal account.
 
-###### (Example) Home Page (Importance - Medium)  (Est: 2h)
+###### Dashboard Page 
 * As a logged-in user,
-* I want to be able to preview the content of the app,
-* So i can decide what section I want to navigate to.
+* I want to be able to view all saved items and have the ability to check/un-check, edit, delete, or add an item,
+* So I can decide what section I want to navigate to.
+
+###### Add Item Page 
+* As a logged-in user,
+* I want to be able to enter a new keyword for a pinned map image, select (currency, language, rating, cost, type, visited), and add notes,
+* So I can save my item to the dashboard.
 
 
 
-### 3. Functionality (to do now)
+### 3. Functionality (to do now) once sentence for every function (functions will often span multiple pages)
 The app's functionality includes:
-* (Example) Every User has the ability to create an account (what can be done and what can't)
--log in
--Enter a location (reroute to a google search with their keyword(s))
--pin location on map (https://developers.google.com/maps/documentation/embed/get-started)
---if results don't work--> no places found
--save location and personal notes to a list item
--edit/delete location/image/notes
--delete entire item
--Public vs Private information (toggle-able)
--Practical advice (currency, language, grading system(1 - 5 stars), cost($, $$, $$$), type (historical, romantic, outdoor, business, tourist, religious, sport, educational))
--"Check off" item (visited (yes/no) & type)
--Personal notes
+* A persistent nav-bar to navigate to home, dashboard, and log-in/log-out
+* Every User has the ability to create an account 
+* On the landing page, a visitor can view public information that was saved
+* Each item will have the average or most common answer to each category displayed
+* Public notes will be displayed under each item (if toggled to public)
+* A visitor should be able to log in or register
+* A user should be able to log out
+* A logged in user should see a dashboard with all saved items and the ability to add an item
+* Every item can be 'checked/un-checked' and will have a tag of 'Been there done that' or 'On the Bucket List'
+* Selecting 'add item' will reroute to a new form 
+* The 'add item' form allows the user to enter a new keyword
+* A user's keyword should reroute to a google search and return a location
+* A user's location search should pin a map image (https://developers.google.com/maps/documentation/embed/get-started)
+* If a user's search results don't work, no places are found
+* A user can select from a number of practical options to further describe the item (currency, language, grading system(1 - 5 stars), cost($, $$, $$$), type (historical, romantic, outdoor business, tourist, religious, sport, educational)
+* There will be a mandatory selection for 'visited vs future plan'
+* A section exists for personal notes at the bottom
+* A user's searched location, map image, selections, and personal notes can be saved to a list item
+* A user's personal notes can be toggled to either public or private
+* Saved items can be edited and/or deleted 
+* A succesful save/delete will reroute to the dashboard with the item added to the top
+* Each new item added will also be added to the top of the public list on the home page
+* --low priority-- A single filter dropdown to select low-to-high/high-to-low (rating, cost)
+* --low priority-- A user's dashboard will have a search bar to search their own saved items by title
 
--Dashboard page for private stuff (first page after log in)
--Your saved locations with their map image and saved info
--Form to enter a new keyword
 
--Home Page for the public stuff (seen before log in)
--Specific display for the categories (average or most common for each item)
---any public notes for a location (maybe an expandable comment section)
+
 
 
 
@@ -66,7 +85,7 @@ The app's functionality includes:
 
 
 
-### 5. Wireframes (to do now)
+### 5. Wireframes (to do now) on paper, one for every user story
 (Example) Landing Page
 :-------------------------:
 ![Landing Page](/github-images/wireframes/landing-page-wireframe.png)
@@ -99,7 +118,7 @@ API Documentation details:
 
 
 
-### 9. Screenshots (to do later)
+### 9. Screenshots (to do later) one for every user story
 (Example) Landing Page
 :-------------------------:
 ![Landing Page](/github-images/screenshots/landing-page-screenshot.png)
@@ -114,7 +133,7 @@ This is v1.0 of the app, but future enhancements are expected to include:
 
 
 
-### 11. How to run it (done)
+### 11. How to run it
 Use command line to navigate into the project folder and run the following in terminal
 
 ##### Local React scripts
