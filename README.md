@@ -9,8 +9,7 @@ You can access a working prototype of the React app here: https://travel-diary-c
 
 
 
-### 2. User Stories (to do now) one user story for every greybox wireframe (page specific)
-(user story for each functionality)
+### 2. User Stories 
 This app is for two types of users: a visitor and a logged-in user
 
 1--user stories
@@ -18,50 +17,48 @@ This app is for two types of users: a visitor and a logged-in user
 3--add css responsive and accessible to the grey box wireframes
 4--reactify the grey-box wireframes using this guide here (https://github.com/mariusbanea/web-developers-toolkit/blob/master/capstone-projects/steps-to-convert-html-to-react.md)
 
-###### Landing Page 
+###### Landing Page (Importance - Medium) (Est: 2h)
 * as a visitor
 * I want to understand what I can do with this app and view public information (or sign up, or log in)
 * so I can decide if I want to use it
 
 
-###### Login Page 
+###### Login Page (Importance - High) (Est: 3h)
 * As a returning register user
 * I want to enter my password and username to use this app,
 * So I can have access to my account.
 
-###### Sign Up 
+###### Sign Up (Importance - High) (Est: 3h)
 * As a visitor
 * I want to register to use this app
 * So I can create a personal account.
 
-###### Dashboard Page 
+###### Dashboard Page (Importance - High) (Est: 2h)
 * As a logged-in user,
 * I want to be able to view all saved items and have the ability to check/un-check, edit, delete, or add an item,
 * So I can decide what section I want to navigate to.
 
-###### Add Item Page 
+###### Add Item Page (Importance - High) (Est: 3h)
 * As a logged-in user,
 * I want to be able to enter a new keyword for a pinned map image, select (currency, language, rating, cost, type, visited), and add notes,
 * So I can save my item to the dashboard.
 
 
 
-### 3. Functionality (to do now) once sentence for every function (functions will often span multiple pages)
+### 3. Functionality 
 The app's functionality includes:
 * A persistent nav-bar to navigate to home, dashboard, and log-in/log-out
-* Every User has the ability to create an account 
+* Every User has the ability to create an account, log in or log-out
 * On the landing page, a visitor can view public information that was saved
 * Each item will have the average or most common answer to each category displayed
 * Public notes will be displayed under each item (if toggled to public)
-* A visitor should be able to log in or register
-* A user should be able to log out
 * A logged in user should see a dashboard with all saved items and the ability to add an item
 * Every item can be 'checked/un-checked' and will have a tag of 'Been there done that' or 'On the Bucket List'
-* Selecting 'add item' will reroute to a new form 
+* Selecting 'add item' will route to a new form 
 * The 'add item' form allows the user to enter a new keyword
 * A user's keyword should reroute to a google search and return a location
 * A user's location search should pin a map image (https://developers.google.com/maps/documentation/embed/get-started)
-* If a user's search results don't work, no places are found
+* If a user's search results don't work, show the error: 'no places found matching this keyword'
 * A user can select from a number of practical options to further describe the item (currency, language, grading system(1 - 5 stars), cost($, $$, $$$), type (historical, romantic, outdoor business, tourist, religious, sport, educational)
 * There will be a mandatory selection for 'visited vs future plan'
 * A section exists for personal notes at the bottom
@@ -85,12 +82,10 @@ The app's functionality includes:
 
 
 
-### 5. Wireframes (to do now) on paper, one for every user story
-(Example) Landing Page
+### 5. Wireframes
+Travel Diary Wireframe
 :-------------------------:
-![Landing Page](/github-images/wireframes/landing-page-wireframe.png)
-Register Page
-![Register Page](/github-images/wireframes/register-page-wireframe.png)
+![Travel Diary Wireframe](/github-images/wireframes/travel-diary-wireframe.png)
 
 
 
