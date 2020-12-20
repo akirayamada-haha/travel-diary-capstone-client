@@ -90,7 +90,7 @@ Travel Diary Wireframe
 
 
 ### 6. Front-end Structure - React Components Map 
-* (Example) __Index.js__ (stateless)
+* __Index.js__ (stateless)
     * __App.js__ (stateful)
         * __LandingPage.js__ (stateful) - gets the _"prop name"_ and the _"callback prop name"_ from the __App.js__
             * __Login.js__ (stateful) -
@@ -114,6 +114,7 @@ Travel Diary Wireframe
     * category (string varchar255 ex: 'Been There' or 'On My List')
     * rating (integer 1 - 5)
     * cost (integer 1 - 3)
+    * currency (string varchar255 ex: Euro)
     * language (string varchar255 ex: English, Spanish)
     * type (string varchar255 ex: Romantic)
     * notes (string varchar255 ex: This place is known for...)

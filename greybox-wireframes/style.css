@@ -203,7 +203,60 @@ Is a short set of CSS rules that resets the styling of all HTML elements to a co
     background: -webkit-linear-gradient(top, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
     width: 80%;
   }
-  
+
+  .landing-page .item-wrapper {
+      display: block;
+      width: 100%;
+      border-bottom: 1px solid white;
+  }
+
+  .landing-page .item-wrapper:last-child {
+      border-bottom: none;
+  }
+
+  .landing-page .item-wrapper .item-column {
+      width: 49%;
+      display: inline-block;
+      /* border: 1px solid black; */
+      vertical-align: top;
+      padding: 15px;
+      text-align: left;
+  }
+
+  .landing-page .item-wrapper .item-column .item-image {
+    width: 100%;
+    border-radius: 15px;
+    border: 1px solid white;
+  }
+
+  .landing-page .item-wrapper .item-column h3.item-title {
+      text-align: left;
+      margin-bottom: 15px;
+  }
+
+  .landing-page .item-wrapper .item-column p.item-notes {
+    text-align: left;
+    margin-bottom: 15px;
+  }
+ 
+  .landing-page .item-wrapper .item-column .item-details {
+    display: block;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    list-style-type: none;
+  }
+
+  .landing-page .item-wrapper .item-column .item-details li {
+      border-top: 1px solid white;
+      padding-top: 10px;
+      padding-bottom: 10px;
+  }
+
+  .landing-page .item-wrapper .item-column .item-details li:last-child {
+    border-bottom: 1px solid white;
+  }
+
   .dhr-page {
     border: 2px black solid;
     background-color: lightgray;
