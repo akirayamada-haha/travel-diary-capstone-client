@@ -89,21 +89,38 @@ Travel Diary Wireframe
 
 
 
-### 6. Front-end Structure - React Components Map (to do later)
+### 6. Front-end Structure - React Components Map 
 * (Example) __Index.js__ (stateless)
     * __App.js__ (stateful)
         * __LandingPage.js__ (stateful) - gets the _"prop name"_ and the _"callback prop name"_ from the __App.js__
             * __Login.js__ (stateful) -
             * __Register.js__ (stateful) -
+        * __PublicPosts.js__ (stateful) - gets the _"prop name"_ and the _"callback prop name"_ from the __App.js__
         * __Navbar.js__ (stateless) -
+        * __DashBoard.js__ (stateful) - gets the _"prop name"_ and the _"callback prop name"_ from the __App.js__
+        * __AddItem.js__ (stateful) - gets the _"prop name"_ and the _"callback prop name"_ from the __App.js__
 
 
 
-### 7. Back-end Structure - Business Objects (to do later)
-* (Example) Users (database table)
-    * id (auto-generated)
-    * username (email validation)
-    * password (at least 8 chars, at least one alpha and a special character validation)
+### 7. Back-end Structure - Business Objects 
+* users (database table)
+    * user_id
+    * email (email validation)
+    * password (at least one number, one lowercase and one uppercase letter at least eight characters that are letters, numbers or the underscore validation)
+* items (database table)
+    * item_id
+    * user_id
+    * keyword (string varchar255 ex: Paris, France)
+    * category (string varchar255 ex: 'Been There' or 'On My List')
+    * rating (integer 1 - 5)
+    * cost (integer 1 - 3)
+    * language (string varchar255 ex: English, Spanish)
+    * type (string varchar255 ex: Romantic)
+    * notes (string varchar255 ex: This place is known for...)
+    * is_public (boolean default false)
+
+
+
 
 
 
