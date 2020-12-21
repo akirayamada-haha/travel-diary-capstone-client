@@ -8,12 +8,52 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300&family=Pacifico&family=Roboto&family=Sriracha&display=swap"
         rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
     <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 
 <body>
+    <header class='clearfix'>
+        <h4>Travel Bucket</h4>
+            <nav class="nav">
+                <ul class='link'>
+                    <!-- navigation for visitors -->
+                    <li>
+                        <a class="nav-link-item" href="/log-in">
+                            <i class="fas fa-edit"></i>
+                            <span class='navlink-text'>Log-in</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link-item" href="/register" >
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span class='navlink-text'>Register</span>
+                        </a>
+                    </li>
+                    <!-- navigation for logged in users -->
+                    <li>
+                        <a class="nav-link-item" href="/dashboard">
+                            <i class="fas fa-question-circle"></i>
+                            <span class='navlink-text'>Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link-item" href="/new-item">
+                            <i class="fas fa-plus-circle"></i>
+                            <span class='navlink-text'>New Item</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link-item" href="/" onClick={this.logOutClick}>
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span class='navlink-text'>Log-Out</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+    </header>
 
-    <div class="container">
+    <main class="container">
 
         <section class="registration">
 
@@ -95,13 +135,32 @@
                     <h3 class="item-title">United States</h3>
                     <p class="item-notes">Here are the user's notes</p>
                     <ul class="item-details">
-                        <li class="item-rating">Rating</li>
-                        <li class="item-cost">$$$</li>
-                        <li class="item-currency">US Dollar</li>
-                        <li class="item-type">Romantic</li>
+                        <li class="item-rating">
+                            <i class="fas fa-star selected-icon"></i>
+                            <i class="fas fa-star selected-icon"></i>
+                            <i class="fas fa-star selected-icon"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </li>
+                        <li class="item-cost">
+                            <i class="fas fa-dollar-sign selected-icon"></i>
+                            <i class="fas fa-dollar-sign selected-icon"></i>
+                            <i class="fas fa-dollar-sign"></i>
+                        </li>
+                        <li class="item-currency">America (United States) Dollars - USD</li>
+                        <li class="item-type">
+                            <i class="fas fa-futbol selected-icon"></i> 
+                            <i class="fas fa-praying-hands"></i> 
+                            <i class="fas fa-graduation-cap"></i> 
+                            <i class="fas fa-landmark"></i> 
+                            <i class="fas fa-heart"></i> 
+                            <i class="fas fa-hiking"></i> 
+                            <i class="fas fa-business-time"></i> 
+                            <i class="fas fa-bus"></i> 
+                        </li>
                         <li class="item-language">English</li>
-                        <li class="item-category">Been There Done That!</li>
-                        <li class="is-public">Public</li>
+                        <!-- <li class="item-category">Been There Done That!</li> -->
+                        <!-- <li class="is-public">Public</li> -->
                     </ul>
                 </div>
 
@@ -116,13 +175,32 @@
                     <h3 class="item-title">United States</h3>
                     <p class="item-notes">Here are the user's notes</p>
                     <ul class="item-details">
-                        <li class="item-rating">Rating</li>
-                        <li class="item-cost">$$$</li>
-                        <li class="item-currency">US Dollar</li>
-                        <li class="item-type">Romantic</li>
+                        <li class="item-rating">
+                            <i class="fas fa-star selected-icon"></i>
+                            <i class="fas fa-star selected-icon"></i>
+                            <i class="fas fa-star selected-icon"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </li>
+                        <li class="item-cost">
+                            <i class="fas fa-dollar-sign selected-icon"></i>
+                            <i class="fas fa-dollar-sign selected-icon"></i>
+                            <i class="fas fa-dollar-sign"></i>
+                        </li>
+                        <li class="item-currency">America (United States) Dollars - USD</li>
+                        <li class="item-type">
+                            <i class="fas fa-futbol selected-icon"></i> 
+                            <i class="fas fa-praying-hands"></i> 
+                            <i class="fas fa-graduation-cap"></i> 
+                            <i class="fas fa-landmark"></i> 
+                            <i class="fas fa-heart"></i> 
+                            <i class="fas fa-hiking"></i> 
+                            <i class="fas fa-business-time"></i> 
+                            <i class="fas fa-bus"></i> 
+                        </li>
                         <li class="item-language">English</li>
-                        <li class="item-category">Been There Done That!</li>
-                        <li class="is-public">Public</li>
+                        <!-- <li class="item-category">Been There Done That!</li> -->
+                        <!-- <li class="is-public">Public</li> -->
                     </ul>
                 </div>
 
@@ -138,28 +216,53 @@
         <section class="dashboard-page">
 
             <h1>Hello Jimmy Smith!</h1>
-
-            <div>
-                <h3>Austin, Texas</h3>
-                <h4>(Map Image for Austin, Texas)</h4>
-                <ul>
-                    <li><a href="#" class="myButton">Been there, done that!</a></li>
-                    <li>Rating</li>
-                    <li>$$</li>
-                    <li>Currency: US Dollar</li>
-                    <li>Known for its music scene, bars, and green hiking trails</li>
-                </ul>
-            </div>
-
-            <div class="form-item">
-                <a href="#" class="myButton">Edit</a>
-            </div>
-            <div class="form-item">
-                <a href="#" class="myButton">Delete</a>
-            </div>
-            <div class="form-item">
-                <a href="#" class="myButton">New Entry</a>
-            </div>
+            <div class="item-wrapper">
+                <div class="item-column">
+                    <img src="https://m.media-amazon.com/images/I/51+vl7wfRPL._AC_.jpg" class="item-image" />
+                </div>
+                <div class="item-column">
+                    <h3 class="item-title">United States</h3>
+                    <p class="item-notes">Here are the user's notes</p>
+                    <ul class="item-details">
+                        <li class="item-rating">
+                            <i class="fas fa-star selected-icon"></i>
+                            <i class="fas fa-star selected-icon"></i>
+                            <i class="fas fa-star selected-icon"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </li>
+                        <li class="item-cost">
+                            <i class="fas fa-dollar-sign selected-icon"></i>
+                            <i class="fas fa-dollar-sign selected-icon"></i>
+                            <i class="fas fa-dollar-sign"></i>
+                        </li>
+                        <li class="item-currency">America (United States) Dollars - USD</li>
+                        <li class="item-type">
+                            <i class="fas fa-futbol selected-icon"></i> 
+                            <i class="fas fa-praying-hands"></i> 
+                            <i class="fas fa-graduation-cap"></i> 
+                            <i class="fas fa-landmark"></i> 
+                            <i class="fas fa-heart"></i> 
+                            <i class="fas fa-hiking"></i> 
+                            <i class="fas fa-business-time"></i> 
+                            <i class="fas fa-bus"></i> 
+                        </li>
+                        <li class="item-language">English</li>
+                        <li class="item-category">Been There Done That!
+                            <a href="#" class="myButton">On My List!</a>
+                        </li>
+                        <li class="is-public">Public</li>
+                        <li class="item-actions">
+                            <div class="form-item">
+                                <a href="#" class="myButton">Edit</a>
+                            </div>
+                            <div class="form-item">
+                                <a href="#" class="myButton">Delete</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>           
         </section>
 
 
@@ -178,21 +281,17 @@
                     <input type="text" placeholder="keyword" required="" id="keyword-search" />
                 </div>
                 <div class="form-item">
-                    Have you been there?<br>
-                    <label>
-                        <input type="radio" name="visted" value="yes" required>
-                        Been There!
-                    </label><br>
-
-                    <label>
-                        <input type="radio" name="visited" value="no">
-                        On My List!
-                    </label><br>
+                    <label htmlFor="visted">Have you been here before?</label>
+                    <select name="visited" id="visited" required>
+                        <option defaultValue="" disabled>Select Bucket Status</option>
+                        <option defaultValue="Been There Done That!">Been There Done That!</option>
+                        <option defaultValue="On My List!">On My List!</option>
+                    </select>
                 </div>
                 <div class="form-item">
                     <label htmlFor="rating">How would you rate this location?:</label>
                     <select name="rating" id="rating">
-                        <option defaultValue="">select rating</option>
+                        <option defaultValue="" disabled>Select Rating</option>
                         <option defaultValue="1 Star">1 Star</option>
                         <option defaultValue="2 Stars">2 Stars</option>
                         <option defaultValue="3 Stars">3 Stars</option>
@@ -203,7 +302,7 @@
                 <div class="form-item">
                     <label htmlFor="cost">How would you rate this location's cost?:</label>
                     <select name="cost" id="cost">
-                        <option defaultValue="">select cost</option>
+                        <option defaultValue="" disabled>Select Cost</option>
                         <option defaultValue="$">$</option>
                         <option defaultValue="$$">$$</option>
                         <option defaultValue="$$$">$$$</option>
@@ -212,7 +311,7 @@
                 <div class="form-item">
                     <label htmlFor="language">What language is primarily spoken here?:</label>
                     <select name="language" id="language" data-placeholder="Choose a Language...">
-                        <option selected value="">Select language</option>
+                        <option selected value="" disabled>Select Language</option>
                         <option value="English">English</option>
                         <option value="Afrikaans">Afrikaans</option>
                         <option value="Albanian">Albanian</option>
@@ -290,7 +389,7 @@
                 <div class="form-item">
                     <label htmlFor="type">What kind of trip would you suggest?:</label>
                     <select name="type" id="type">
-                        <option defaultValue="">select type</option>
+                        <option defaultValue="" disabled>Select Type</option>
                         <option defaultValue="Historical">Historical</option>
                         <option defaultValue="Romantic">Romantic</option>
                         <option defaultValue="Outdoor">Outdoor</option>
@@ -302,9 +401,9 @@
                     </select>
                 </div>
                 <div class="form-item">
-                    <label htmlFor="currencies">What kind of trip would you suggest?:</label>
+                    <label htmlFor="currencies">What is this region's currency?</label>
                     <select name="currencies" id="currencies">
-                        <option selected value="">Select currency</option>
+                        <option selected value="" disabled>Select Currency</option>
                         <option value="America (United States) Dollars - USD">America (United States) Dollars – USD</option>
                         <option value="Afghanistan Afghanis - AFN">Afghanistan Afghanis – AFN</option>
                         <option value="Albania Leke - ALL">Albania Leke – ALL</option>
@@ -439,7 +538,7 @@
                 <div class="form-item">
                     <label htmlFor="privacy">Please select this entries' privacy:</label>
                     <select name="privacy" id="privacy" required>
-                        <option defaultValue="" disabled>select privacy:</option>
+                        <option defaultValue="" disabled>Select Privacy:</option>
                         <option defaultValue="public">Public</option>
                         <option defaultValue="private">Private</option>
                     </select>
@@ -454,10 +553,7 @@
 
         </section>
 
-    </div>
-
-
-    <!-- <script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=735J8WcriwFjDQ00cGhnXZgA-HAHOnNeRuWOODVguwRp11hZuABNamAMaBzE_g_1Iz9dAijbFGkHwuNqTqwSbn3qsiCGZxZjks2gItF5QAnCb5t-yOMSh2o01DqIca_O4yCU4zJwD-2aYS7HMoeECJBS_4zjnXShcI2mk5c5eY4" charset="UTF-8"></script> -->
+    </main>
     <script src="https://kit.fontawesome.com/3075e528fd.js" crossorigin="anonymous"></script>
 </body>
 

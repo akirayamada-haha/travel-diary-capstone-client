@@ -90,6 +90,15 @@ Is a short set of CSS rules that resets the styling of all HTML elements to a co
   div {
     margin-bottom: 4px;
   }
+
+  a {
+    color: blue;
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: white;
+  }
   
   p {
     text-align: center;
@@ -156,7 +165,9 @@ Is a short set of CSS rules that resets the styling of all HTML elements to a co
     display: block;
   }
   
-  
+  .selected-icon {
+    color: red;
+  }
   
   
   
@@ -164,15 +175,56 @@ Is a short set of CSS rules that resets the styling of all HTML elements to a co
   Header styles (Main Module)
   (all the styles inside the < header > or < nav > tags)
   */
+
+  header {
+    width: 100%;
+    border-bottom: 2px solid grey;
+    display: block;
+    position: fixed;
+    top: 0;
+    background: -webkit-linear-gradient(top, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+    padding: 20px 10px;
+  }
+
+  header h4, header nav {
+    width: auto;
+    display: inline-block;
+  }
+
+  header h4 {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: white;
+    size: 120%;
+  }
+
+  header nav {
+    float: right;
+  }
+
+  header nav ul {
+    list-style-type: none;
+  }
+
+  header nav ul li {
+    width: auto;
+    display: inline-block;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-right: 1px solid white;
+  }
+
+  header nav ul li:last-child {
+    border-right: none;
+  }
   
   /* -------------------------------------
   Content styles (Main Module)
   (all the styles inside the < sections > or < aside > tags)
   */
   
-  .container {
+  main.container {
     max-width: 1080px;
-    margin: 0 auto;
+    margin: 100px auto;
   }
   
   form {
@@ -196,7 +248,7 @@ Is a short set of CSS rules that resets the styling of all HTML elements to a co
      width: 80%;
   }
   
-  .landing-page {
+  section {
     border: 2px black solid;
     margin-top: 40px;
     padding: 0px 10px 40px 10px;
@@ -204,17 +256,17 @@ Is a short set of CSS rules that resets the styling of all HTML elements to a co
     width: 80%;
   }
 
-  .landing-page .item-wrapper {
+  section.item-wrapper {
       display: block;
       width: 100%;
       border-bottom: 1px solid white;
   }
 
-  .landing-page .item-wrapper:last-child {
+  section .item-wrapper:last-child {
       border-bottom: none;
   }
 
-  .landing-page .item-wrapper .item-column {
+  section .item-wrapper .item-column {
       width: 49%;
       display: inline-block;
       /* border: 1px solid black; */
@@ -223,23 +275,23 @@ Is a short set of CSS rules that resets the styling of all HTML elements to a co
       text-align: left;
   }
 
-  .landing-page .item-wrapper .item-column .item-image {
+  section .item-wrapper .item-column .item-image {
     width: 100%;
     border-radius: 15px;
     border: 1px solid white;
   }
 
-  .landing-page .item-wrapper .item-column h3.item-title {
+  section .item-wrapper .item-column h3.item-title {
       text-align: left;
       margin-bottom: 15px;
   }
 
-  .landing-page .item-wrapper .item-column p.item-notes {
+  section .item-wrapper .item-column p.item-notes {
     text-align: left;
     margin-bottom: 15px;
   }
  
-  .landing-page .item-wrapper .item-column .item-details {
+  section .item-wrapper .item-column .item-details {
     display: block;
     width: 80%;
     margin-left: auto;
@@ -247,30 +299,14 @@ Is a short set of CSS rules that resets the styling of all HTML elements to a co
     list-style-type: none;
   }
 
-  .landing-page .item-wrapper .item-column .item-details li {
+  section .item-wrapper .item-column .item-details li {
       border-top: 1px solid white;
       padding-top: 10px;
       padding-bottom: 10px;
   }
 
-  .landing-page .item-wrapper .item-column .item-details li:last-child {
+  section .item-wrapper .item-column .item-details li:last-child {
     border-bottom: 1px solid white;
-  }
-
-  .dhr-page {
-    border: 2px black solid;
-    background-color: lightgray;
-    margin-top: 40px;
-    padding: 0px 10px 40px 10px;
-    width: 80%;
-  }
-  
-  .defect-log {
-    border: 2px black solid;
-    background-color: lightgray;
-    margin-top: 40px;
-    padding: 0px 10px 40px 10px;
-    width: 80%;
   }
   
   div.blueTable {
