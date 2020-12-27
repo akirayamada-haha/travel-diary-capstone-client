@@ -1,5 +1,4 @@
 # Travel Diary Capstone Client
-One line description of what this app is doing and who is it for
 A hub for travel enthusiasts to store information and see public information stored by other users
 
 
