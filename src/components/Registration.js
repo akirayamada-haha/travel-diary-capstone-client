@@ -88,7 +88,7 @@ export class Registration extends Component {
         console.log("user:", response);
         TokenService.saveAuthToken(response.authToken);
         TokenService.saveUserId(response.id);
-        window.location = "/library";
+        window.location = "/dashboard-page";
       })
 
       .catch((res) => {

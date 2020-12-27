@@ -1,6 +1,45 @@
 import React, { Component } from "react";
+import config from "../config"
+import TokenService from "../services/token-service"
+import { Link } from 'react-router-dom'
 
 export class AddItemPage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+        itemsByUserId: [],
+
+    };
+}
+
+  componentDidMount() {
+
+    let currentUser = TokenService.getUserId();
+    console.log(currentUser)
+
+    //if the user is not logged in, send him to landing page
+    if (!TokenService.hasAuthToken()) {
+        window.location = '/'
+    }
+
+
+
+
+
+    // let getItemsByUserIdUrl = `${config.API_ENDPOINT}/items/user/${currentUser}`;
+
+    // fetch(getItemsByUserIdUrl)
+    //     .then((itemsInList) => itemsInList.json())
+    //     .then((itemsInList) => {
+    //         // console.log(itemsInList)
+    //         this.setState({
+    //             itemsByUserId: itemsInList,
+    //         });
+    //         // console.log(this.state);
+    //     })
+
+    //     .catch((error) => this.setState({ error }));
+}
   render() {
     return (
       <div>

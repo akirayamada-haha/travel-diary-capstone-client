@@ -84,7 +84,7 @@ export class SignIn extends Component {
       console.log("response ID", response)
       TokenService.saveAuthToken(response.authToken)
       TokenService.saveUserId(response.userId)
-      window.location ='/library'
+      window.location ='/dashboard-page'
     })
     .then(response => {
       console.log("response:",response)
