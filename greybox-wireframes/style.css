@@ -454,6 +454,30 @@ Is a short set of CSS rules that resets the styling of all HTML elements to a co
   Footer styles (Main Module)
   (all the styles inside the < footer > tag)
   */
+
+  footer {
+    margin-top: 50px;
+    margin-bottom: 15px;
+    border: 0px;
+  }
+  
+  footer h4 {
+    display: block;
+    text-align: center;
+    font-weight: bold;
+  }
+  
+  footer a i.far {
+    display: block;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    color: #163a8b;
+  }
+  
+  footer a:hover i.far {
+    color: #081e6f;
+  }
   
   /* -------------------------------------
   place all the desktop styles above this line
