@@ -1,91 +1,142 @@
 import React, { Component } from "react";
-import config from "../config"
-import TokenService from "../services/token-service"
-import { Link } from 'react-router-dom'
+import config from "../config";
+import TokenService from "../services/token-service";
+import { Link } from "react-router-dom";
 
 export class AddItemPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        itemsByUserId: [],
-
+      itemsByUserId: [],
+      error: null,
+      databaseWorkouts: [],
     };
-}
+  }
 
   componentDidMount() {
-
     let currentUser = TokenService.getUserId();
-    console.log(currentUser)
+    console.log(currentUser);
 
     //if the user is not logged in, send him to landing page
     if (!TokenService.hasAuthToken()) {
-        window.location = '/'
+      window.location = "/";
     }
+  }
 
+  handleSubmit = (e) => {
+    e.preventDefault();
+    //create an object to store the search filters
+    const userInputData = {};
 
+    //get all the form data from the form component
+    const formData = new FormData(e.target);
 
+    //for each of the keys in form data populate it with form value
+    for (let value of formData) {
+      userInputData[value[0]] = value[1];
+    }
+    console.log(userInputData);
+    // let { difficulty, type } = data;
 
+    let payload = {
+      user_id: TokenService.getUserId(),
+      keyword: userInputData.keyword,
+      category: userInputData.category,
+      rating: parseInt(userInputData.rating),
+      cost: parseInt(userInputData.cost),
+      currency: userInputData.currency,
+      language: userInputData.language,
+      type: userInputData.type,
+      notes: userInputData.notes,
+      is_public: parseInt(userInputData.is_public),
+    };
 
-    // let getItemsByUserIdUrl = `${config.API_ENDPOINT}/items/user/${currentUser}`;
+    console.log("the payload: ", payload);
+    //define the API call parameters
+    const options = {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    };
 
-    // fetch(getItemsByUserIdUrl)
-    //     .then((itemsInList) => itemsInList.json())
-    //     .then((itemsInList) => {
-    //         // console.log(itemsInList)
-    //         this.setState({
-    //             itemsByUserId: itemsInList,
-    //         });
-    //         // console.log(this.state);
-    //     })
+    //useing the url and parameters above make the api call
+    fetch(`${config.API_ENDPOINT}/items`, options)
+      // if the api returns data ...
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Something went wrong, please try again later.");
+        }
+        // ... convert it to json
+        return res.json();
+      })
+      // use the json api output
+      .then((data) => {
+        //check if there is meaningfull data
+        console.log(data);
+        // check if there are no results
+        if (data.totalItems === 0) {
+          throw new Error("No data found");
+        }
+        window.location.href = "/dashboard-page";
+      })
+      .catch((err) => {
+        // this.setState({
+        //   error: err.message,
+        // });
+      });
+  };
 
-    //     .catch((error) => this.setState({ error }));
-}
   render() {
+    //if there is an error message display it
+    const errorMessage = this.state.error ? (
+      <div className="alert alert-info">
+        <i className="fas fa-info"></i> <strong>Info</strong>
+        {this.state.error}
+      </div>
+    ) : (
+      false
+    );
     return (
       <div>
         <section className="add-item-page">
           <h1>New Item</h1>
-          <form className="create-new-item">
-            <div className="alert alert-info">
-              <i className="fas fa-info"></i> <strong>Info</strong> Please enter
-              a valid keyword!!
-            </div>
-            <div className="alert alert-info">
-              <i className="fas fa-info"></i> <strong>Info</strong> Please
-              select visited/bucket-list!!
-            </div>
+          <form className="create-new-item" onSubmit={this.handleSubmit}>
+            {errorMessage}
             <div className="add-item">
               <label htmlFor="keyword-search">Enter a keyword</label>
               <input
                 type="text"
                 placeholder="keyword"
-                required=""
+                name="keyword"
+                required
                 id="keyword-search"
               />
             </div>
             <div className="form-item">
               <label htmlFor="visted">Have you been here before?</label>
-              <select name="visited" id="visited" required>
-                <option defaultValue="" disabled>
+              <select name="category" id="visited" required>
+                <option value="" disabled>
                   Select Bucket Status
                 </option>
-                <option defaultValue="Been There Done That!">
+                <option value="Been There Done That!">
                   Been There Done That!
                 </option>
-                <option defaultValue="On My List!">On My List!</option>
+                <option value="On My List!">On My List!</option>
               </select>
             </div>
             <div className="form-item">
               <label htmlFor="rating">How would you rate this location?:</label>
               <select name="rating" id="rating">
-                <option defaultValue="" disabled>
+                <option value="" disabled>
                   Select Rating
                 </option>
-                <option defaultValue="1 Star">1 Star</option>
-                <option defaultValue="2 Stars">2 Stars</option>
-                <option defaultValue="3 Stars">3 Stars</option>
-                <option defaultValue="4 Stars">4 Stars</option>
-                <option defaultValue="5 Stars">5 Stars</option>
+                <option value="1">1 Star</option>
+                <option value="2">2 Stars</option>
+                <option value="3">3 Stars</option>
+                <option value="4">4 Stars</option>
+                <option value="5">5 Stars</option>
               </select>
             </div>
             <div className="form-item">
@@ -93,12 +144,12 @@ export class AddItemPage extends Component {
                 How would you rate this location's cost?:
               </label>
               <select name="cost" id="cost">
-                <option defaultValue="" disabled>
+                <option value="" disabled>
                   Select Cost
                 </option>
-                <option defaultValue="$">$</option>
-                <option defaultValue="$$">$$</option>
-                <option defaultValue="$$$">$$$</option>
+                <option value="1">$</option>
+                <option value="2">$$</option>
+                <option value="3">$$$</option>
               </select>
             </div>
             <div className="form-item">
@@ -110,83 +161,81 @@ export class AddItemPage extends Component {
                 id="language"
                 data-placeholder="Choose a Language..."
               >
-                <option selected defaultValue="" disabled>
+                <option value="" disabled>
                   Select Language
                 </option>
-                <option defaultValue="English">English</option>
-                <option defaultValue="Afrikaans">Afrikaans</option>
-                <option defaultValue="Albanian">Albanian</option>
-                <option defaultValue="Arabic">Arabic</option>
-                <option defaultValue="Armenian">Armenian</option>
-                <option defaultValue="Basque">Basque</option>
-                <option defaultValue="Bengali">Bengali</option>
-                <option defaultValue="Bulgarian">Bulgarian</option>
-                <option defaultValue="Catalan">Catalan</option>
-                <option defaultValue="Cambodian">Cambodian</option>
-                <option defaultValue="Chinese (Mandarin)">
-                  Chinese (Mandarin)
-                </option>
-                <option defaultValue="Croatian">Croatian</option>
-                <option defaultValue="Czech">Czech</option>
-                <option defaultValue="Danish">Danish</option>
-                <option defaultValue="Dutch">Dutch</option>
-                <option defaultValue="Estonian">Estonian</option>
-                <option defaultValue="Fiji">Fiji</option>
-                <option defaultValue="Finnish">Finnish</option>
-                <option defaultValue="French">French</option>
-                <option defaultValue="Georgian">Georgian</option>
-                <option defaultValue="German">German</option>
-                <option defaultValue="Greek">Greek</option>
-                <option defaultValue="Gujarati">Gujarati</option>
-                <option defaultValue="Hebrew">Hebrew</option>
-                <option defaultValue="Hindi">Hindi</option>
-                <option defaultValue="Hungarian">Hungarian</option>
-                <option defaultValue="Icelandic">Icelandic</option>
-                <option defaultValue="Indonesian">Indonesian</option>
-                <option defaultValue="Irish">Irish</option>
-                <option defaultValue="Italian">Italian</option>
-                <option defaultValue="Japanese">Japanese</option>
-                <option defaultValue="Javanese">Javanese</option>
-                <option defaultValue="Korean">Korean</option>
-                <option defaultValue="Latin">Latin</option>
-                <option defaultValue="Latvian">Latvian</option>
-                <option defaultValue="Lithuanian">Lithuanian</option>
-                <option defaultValue="Macedonian">Macedonian</option>
-                <option defaultValue="Malay">Malay</option>
-                <option defaultValue="Malayalam">Malayalam</option>
-                <option defaultValue="Maltese">Maltese</option>
-                <option defaultValue="Maori">Maori</option>
-                <option defaultValue="Marathi">Marathi</option>
-                <option defaultValue="Mongolian">Mongolian</option>
-                <option defaultValue="Nepali">Nepali</option>
-                <option defaultValue="Norwegian">Norwegian</option>
-                <option defaultValue="Persian">Persian</option>
-                <option defaultValue="Polish">Polish</option>
-                <option defaultValue="Portuguese">Portuguese</option>
-                <option defaultValue="Punjabi">Punjabi</option>
-                <option defaultValue="Quechua">Quechua</option>
-                <option defaultValue="Romanian">Romanian</option>
-                <option defaultValue="Russian">Russian</option>
-                <option defaultValue="Samoan">Samoan</option>
-                <option defaultValue="Serbian">Serbian</option>
-                <option defaultValue="Slovak">Slovak</option>
-                <option defaultValue="Slovenian">Slovenian</option>
-                <option defaultValue="Spanish">Spanish</option>
-                <option defaultValue="Swahili">Swahili</option>
-                <option defaultValue="Swedish ">Swedish </option>
-                <option defaultValue="Tamil">Tamil</option>
-                <option defaultValue="Tatar">Tatar</option>
-                <option defaultValue="Telugu">Telugu</option>
-                <option defaultValue="Thai">Thai</option>
-                <option defaultValue="Tibetan">Tibetan</option>
-                <option defaultValue="Tonga">Tonga</option>
-                <option defaultValue="Turkish">Turkish</option>
-                <option defaultValue="Ukrainian">Ukrainian</option>
-                <option defaultValue="Urdu">Urdu</option>
-                <option defaultValue="Uzbek">Uzbek</option>
-                <option defaultValue="Vietnamese">Vietnamese</option>
-                <option defaultValue="Welsh">Welsh</option>
-                <option defaultValue="Xhosa">Xhosa</option>
+                <option value="English">English</option>
+                <option value="Afrikaans">Afrikaans</option>
+                <option value="Albanian">Albanian</option>
+                <option value="Arabic">Arabic</option>
+                <option value="Armenian">Armenian</option>
+                <option value="Basque">Basque</option>
+                <option value="Bengali">Bengali</option>
+                <option value="Bulgarian">Bulgarian</option>
+                <option value="Catalan">Catalan</option>
+                <option value="Cambodian">Cambodian</option>
+                <option value="Chinese (Mandarin)">Chinese (Mandarin)</option>
+                <option value="Croatian">Croatian</option>
+                <option value="Czech">Czech</option>
+                <option value="Danish">Danish</option>
+                <option value="Dutch">Dutch</option>
+                <option value="Estonian">Estonian</option>
+                <option value="Fiji">Fiji</option>
+                <option value="Finnish">Finnish</option>
+                <option value="French">French</option>
+                <option value="Georgian">Georgian</option>
+                <option value="German">German</option>
+                <option value="Greek">Greek</option>
+                <option value="Gujarati">Gujarati</option>
+                <option value="Hebrew">Hebrew</option>
+                <option value="Hindi">Hindi</option>
+                <option value="Hungarian">Hungarian</option>
+                <option value="Icelandic">Icelandic</option>
+                <option value="Indonesian">Indonesian</option>
+                <option value="Irish">Irish</option>
+                <option value="Italian">Italian</option>
+                <option value="Japanese">Japanese</option>
+                <option value="Javanese">Javanese</option>
+                <option value="Korean">Korean</option>
+                <option value="Latin">Latin</option>
+                <option value="Latvian">Latvian</option>
+                <option value="Lithuanian">Lithuanian</option>
+                <option value="Macedonian">Macedonian</option>
+                <option value="Malay">Malay</option>
+                <option value="Malayalam">Malayalam</option>
+                <option value="Maltese">Maltese</option>
+                <option value="Maori">Maori</option>
+                <option value="Marathi">Marathi</option>
+                <option value="Mongolian">Mongolian</option>
+                <option value="Nepali">Nepali</option>
+                <option value="Norwegian">Norwegian</option>
+                <option value="Persian">Persian</option>
+                <option value="Polish">Polish</option>
+                <option value="Portuguese">Portuguese</option>
+                <option value="Punjabi">Punjabi</option>
+                <option value="Quechua">Quechua</option>
+                <option value="Romanian">Romanian</option>
+                <option value="Russian">Russian</option>
+                <option value="Samoan">Samoan</option>
+                <option value="Serbian">Serbian</option>
+                <option value="Slovak">Slovak</option>
+                <option value="Slovenian">Slovenian</option>
+                <option value="Spanish">Spanish</option>
+                <option value="Swahili">Swahili</option>
+                <option value="Swedish ">Swedish </option>
+                <option value="Tamil">Tamil</option>
+                <option value="Tatar">Tatar</option>
+                <option value="Telugu">Telugu</option>
+                <option value="Thai">Thai</option>
+                <option value="Tibetan">Tibetan</option>
+                <option value="Tonga">Tonga</option>
+                <option value="Turkish">Turkish</option>
+                <option value="Ukrainian">Ukrainian</option>
+                <option value="Urdu">Urdu</option>
+                <option value="Uzbek">Uzbek</option>
+                <option value="Vietnamese">Vietnamese</option>
+                <option value="Welsh">Welsh</option>
+                <option value="Xhosa">Xhosa</option>
               </select>
             </div>
             <div className="form-item">
@@ -194,358 +243,298 @@ export class AddItemPage extends Component {
                 What kind of trip would you suggest?:
               </label>
               <select name="type" id="type">
-                <option defaultValue="" disabled>
+                <option value="" disabled>
                   Select Type
                 </option>
-                <option defaultValue="Historical">Historical</option>
-                <option defaultValue="Romantic">Romantic</option>
-                <option defaultValue="Outdoor">Outdoor</option>
-                <option defaultValue="Business">Business</option>
-                <option defaultValue="Tourist">Tourist</option>
-                <option defaultValue="Religious">Religious</option>
-                <option defaultValue="Sport">Sport</option>
-                <option defaultValue="Educational">Educational</option>
+                <option value="Historical">Historical</option>
+                <option value="Romantic">Romantic</option>
+                <option value="Outdoor">Outdoor</option>
+                <option value="Business">Business</option>
+                <option value="Tourist">Tourist</option>
+                <option value="Religious">Religious</option>
+                <option value="Sport">Sport</option>
+                <option value="Educational">Educational</option>
               </select>
             </div>
             <div className="form-item">
               <label htmlFor="currencies">
                 What is this region's currency?
               </label>
-              <select name="currencies" id="currencies">
-                <option selected defaultValue="" disabled>
+              <select name="currency" id="currencies">
+                <option value="" disabled>
                   Select Currency
                 </option>
-                <option defaultValue="America (United States) Dollars - USD">
+                <option value="America (United States) Dollars - USD">
                   America (United States) Dollars – USD
                 </option>
-                <option defaultValue="Afghanistan Afghanis - AFN">
+                <option value="Afghanistan Afghanis - AFN">
                   Afghanistan Afghanis – AFN
                 </option>
-                <option defaultValue="Albania Leke - ALL">
-                  Albania Leke – ALL
-                </option>
-                <option defaultValue="Algeria Dinars - DZD">
+                <option value="Albania Leke - ALL">Albania Leke – ALL</option>
+                <option value="Algeria Dinars - DZD">
                   Algeria Dinars – DZD
                 </option>
-                <option defaultValue="Argentina Pesos - ARS">
+                <option value="Argentina Pesos - ARS">
                   Argentina Pesos – ARS
                 </option>
-                <option defaultValue="Australia Dollars - AUD">
+                <option value="Australia Dollars - AUD">
                   Australia Dollars – AUD
                 </option>
-                <option defaultValue="Austria Schillings - ATS">
+                <option value="Austria Schillings - ATS">
                   Austria Schillings – ATS
                 </option>
 
-                <option defaultValue="Bahamas Dollars - BSD">
+                <option value="Bahamas Dollars - BSD">
                   Bahamas Dollars – BSD
                 </option>
-                <option defaultValue="Bahrain Dinars - BHD">
+                <option value="Bahrain Dinars - BHD">
                   Bahrain Dinars – BHD
                 </option>
-                <option defaultValue="Bangladesh Taka - BDT">
+                <option value="Bangladesh Taka - BDT">
                   Bangladesh Taka – BDT
                 </option>
-                <option defaultValue="Barbados Dollars - BBD">
+                <option value="Barbados Dollars - BBD">
                   Barbados Dollars – BBD
                 </option>
-                <option defaultValue="Belgium Francs - BEF">
+                <option value="Belgium Francs - BEF">
                   Belgium Francs – BEF
                 </option>
-                <option defaultValue="Bermuda Dollars - BMD">
+                <option value="Bermuda Dollars - BMD">
                   Bermuda Dollars – BMD
                 </option>
 
-                <option defaultValue="Brazil Reais - BRL">
-                  Brazil Reais – BRL
-                </option>
-                <option defaultValue="Bulgaria Leva - BGN">
-                  Bulgaria Leva – BGN
-                </option>
-                <option defaultValue="Canada Dollars - CAD">
+                <option value="Brazil Reais - BRL">Brazil Reais – BRL</option>
+                <option value="Bulgaria Leva - BGN">Bulgaria Leva – BGN</option>
+                <option value="Canada Dollars - CAD">
                   Canada Dollars – CAD
                 </option>
-                <option defaultValue="CFA BCEAO Francs - XOF">
+                <option value="CFA BCEAO Francs - XOF">
                   CFA BCEAO Francs – XOF
                 </option>
-                <option defaultValue="CFA BEAC Francs - XAF">
+                <option value="CFA BEAC Francs - XAF">
                   CFA BEAC Francs – XAF
                 </option>
-                <option defaultValue="Chile Pesos - CLP">
-                  Chile Pesos – CLP
-                </option>
+                <option value="Chile Pesos - CLP">Chile Pesos – CLP</option>
 
-                <option defaultValue="China Yuan Renminbi - CNY">
+                <option value="China Yuan Renminbi - CNY">
                   China Yuan Renminbi – CNY
                 </option>
-                <option defaultValue="RMB (China Yuan Renminbi) - CNY">
+                <option value="RMB (China Yuan Renminbi) - CNY">
                   RMB (China Yuan Renminbi) – CNY
                 </option>
-                <option defaultValue="Colombia Pesos - COP">
+                <option value="Colombia Pesos - COP">
                   Colombia Pesos – COP
                 </option>
-                <option defaultValue="CFP Francs - XPF">
-                  CFP Francs – XPF
-                </option>
-                <option defaultValue="Costa Rica Colones - CRC">
+                <option value="CFP Francs - XPF">CFP Francs – XPF</option>
+                <option value="Costa Rica Colones - CRC">
                   Costa Rica Colones – CRC
                 </option>
-                <option defaultValue="Croatia Kuna - HRK">
-                  Croatia Kuna – HRK
-                </option>
+                <option value="Croatia Kuna - HRK">Croatia Kuna – HRK</option>
 
-                <option defaultValue="Cyprus Pounds - CYP">
-                  Cyprus Pounds – CYP
-                </option>
-                <option defaultValue="Czech Republic Koruny - CZK">
+                <option value="Cyprus Pounds - CYP">Cyprus Pounds – CYP</option>
+                <option value="Czech Republic Koruny - CZK">
                   Czech Republic Koruny – CZK
                 </option>
-                <option defaultValue="Denmark Kroner - DKK">
+                <option value="Denmark Kroner - DKK">
                   Denmark Kroner – DKK
                 </option>
-                <option defaultValue="Deutsche (Germany) Marks - DEM">
+                <option value="Deutsche (Germany) Marks - DEM">
                   Deutsche (Germany) Marks – DEM
                 </option>
-                <option defaultValue="Dominican Republic Pesos - DOP">
+                <option value="Dominican Republic Pesos - DOP">
                   Dominican Republic Pesos – DOP
                 </option>
-                <option defaultValue="Dutch (Netherlands) Guilders - NLG">
+                <option value="Dutch (Netherlands) Guilders - NLG">
                   Dutch (Netherlands) Guilders – NLG
                 </option>
 
-                <option defaultValue="Eastern Caribbean Dollars - XCD">
+                <option value="Eastern Caribbean Dollars - XCD">
                   Eastern Caribbean Dollars – XCD
                 </option>
-                <option defaultValue="Egypt Pounds - EGP">
-                  Egypt Pounds – EGP
-                </option>
-                <option defaultValue="Estonia Krooni - EEK">
+                <option value="Egypt Pounds - EGP">Egypt Pounds – EGP</option>
+                <option value="Estonia Krooni - EEK">
                   Estonia Krooni – EEK
                 </option>
-                <option defaultValue="Euro - EUR">Euro – EUR</option>
-                <option defaultValue="Fiji Dollars - FJD">
-                  Fiji Dollars – FJD
-                </option>
-                <option defaultValue="Finland Markkaa - FIM">
+                <option value="Euro - EUR">Euro – EUR</option>
+                <option value="Fiji Dollars - FJD">Fiji Dollars – FJD</option>
+                <option value="Finland Markkaa - FIM">
                   Finland Markkaa – FIM
                 </option>
 
-                <option defaultValue="France Francs - FRF*">
+                <option value="France Francs - FRF*">
                   France Francs – FRF*
                 </option>
-                <option defaultValue="Germany Deutsche Marks - DEM">
+                <option value="Germany Deutsche Marks - DEM">
                   Germany Deutsche Marks – DEM
                 </option>
-                <option defaultValue="Gold Ounces - XAU">
-                  Gold Ounces – XAU
-                </option>
-                <option defaultValue="Greece Drachmae - GRD">
+                <option value="Gold Ounces - XAU">Gold Ounces – XAU</option>
+                <option value="Greece Drachmae - GRD">
                   Greece Drachmae – GRD
                 </option>
-                <option defaultValue="Guatemalan Quetzal - GTQ">
+                <option value="Guatemalan Quetzal - GTQ">
                   Guatemalan Quetzal – GTQ
                 </option>
-                <option defaultValue="Holland (Netherlands) Guilders - NLG">
+                <option value="Holland (Netherlands) Guilders - NLG">
                   Holland (Netherlands) Guilders – NLG
                 </option>
-                <option defaultValue="Hong Kong Dollars - HKD">
+                <option value="Hong Kong Dollars - HKD">
                   Hong Kong Dollars – HKD
                 </option>
 
-                <option defaultValue="Hungary Forint - HUF">
+                <option value="Hungary Forint - HUF">
                   Hungary Forint – HUF
                 </option>
-                <option defaultValue="Iceland Kronur - ISK">
+                <option value="Iceland Kronur - ISK">
                   Iceland Kronur – ISK
                 </option>
-                <option defaultValue="IMF Special Drawing Right - XDR">
+                <option value="IMF Special Drawing Right - XDR">
                   IMF Special Drawing Right – XDR
                 </option>
-                <option defaultValue="India Rupees - INR">
-                  India Rupees – INR
-                </option>
-                <option defaultValue="Indonesia Rupiahs - IDR">
+                <option value="India Rupees - INR">India Rupees – INR</option>
+                <option value="Indonesia Rupiahs - IDR">
                   Indonesia Rupiahs – IDR
                 </option>
-                <option defaultValue="Iran Rials - IRR">
-                  Iran Rials – IRR
-                </option>
+                <option value="Iran Rials - IRR">Iran Rials – IRR</option>
 
-                <option defaultValue="Iraq Dinars - IQD">
-                  Iraq Dinars – IQD
-                </option>
-                <option defaultValue="Ireland Pounds - IEP*">
+                <option value="Iraq Dinars - IQD">Iraq Dinars – IQD</option>
+                <option value="Ireland Pounds - IEP*">
                   Ireland Pounds – IEP*
                 </option>
-                <option defaultValue="Israel New Shekels - ILS">
+                <option value="Israel New Shekels - ILS">
                   Israel New Shekels – ILS
                 </option>
-                <option defaultValue="Italy Lire - ITL*">
-                  Italy Lire – ITL*
-                </option>
-                <option defaultValue="Jamaica Dollars - JMD">
+                <option value="Italy Lire - ITL*">Italy Lire – ITL*</option>
+                <option value="Jamaica Dollars - JMD">
                   Jamaica Dollars – JMD
                 </option>
-                <option defaultValue="Japan Yen - JPY">Japan Yen – JPY</option>
+                <option value="Japan Yen - JPY">Japan Yen – JPY</option>
 
-                <option defaultValue="Jordan Dinars - JOD">
-                  Jordan Dinars – JOD
-                </option>
-                <option defaultValue="Kenya Shillings - KES">
+                <option value="Jordan Dinars - JOD">Jordan Dinars – JOD</option>
+                <option value="Kenya Shillings - KES">
                   Kenya Shillings – KES
                 </option>
-                <option defaultValue="Korea (South) Won - KRW">
+                <option value="Korea (South) Won - KRW">
                   Korea (South) Won – KRW
                 </option>
-                <option defaultValue="Kuwait Dinars - KWD">
-                  Kuwait Dinars – KWD
-                </option>
-                <option defaultValue="Lebanon Pounds - LBP">
+                <option value="Kuwait Dinars - KWD">Kuwait Dinars – KWD</option>
+                <option value="Lebanon Pounds - LBP">
                   Lebanon Pounds – LBP
                 </option>
-                <option defaultValue="Luxembourg Francs - LUF">
+                <option value="Luxembourg Francs - LUF">
                   Luxembourg Francs – LUF
                 </option>
 
-                <option defaultValue="Malaysia Ringgits - MYR">
+                <option value="Malaysia Ringgits - MYR">
                   Malaysia Ringgits – MYR
                 </option>
-                <option defaultValue="Malta Liri - MTL">
-                  Malta Liri – MTL
-                </option>
-                <option defaultValue="Mauritius Rupees - MUR">
+                <option value="Malta Liri - MTL">Malta Liri – MTL</option>
+                <option value="Mauritius Rupees - MUR">
                   Mauritius Rupees – MUR
                 </option>
-                <option defaultValue="Mexico Pesos - MXN">
-                  Mexico Pesos – MXN
-                </option>
-                <option defaultValue="Morocco Dirhams - MAD">
+                <option value="Mexico Pesos - MXN">Mexico Pesos – MXN</option>
+                <option value="Morocco Dirhams - MAD">
                   Morocco Dirhams – MAD
                 </option>
-                <option defaultValue="Netherlands Guilders - NLG">
+                <option value="Netherlands Guilders - NLG">
                   Netherlands Guilders – NLG
                 </option>
 
-                <option defaultValue="New Zealand Dollars - NZD">
+                <option value="New Zealand Dollars - NZD">
                   New Zealand Dollars – NZD
                 </option>
-                <option defaultValue="Norway Kroner - NOK">
-                  Norway Kroner – NOK
-                </option>
-                <option defaultValue="Oman Rials - OMR">
-                  Oman Rials – OMR
-                </option>
-                <option defaultValue="Pakistan Rupees - PKR">
+                <option value="Norway Kroner - NOK">Norway Kroner – NOK</option>
+                <option value="Oman Rials - OMR">Oman Rials – OMR</option>
+                <option value="Pakistan Rupees - PKR">
                   Pakistan Rupees – PKR
                 </option>
-                <option defaultValue="Palladium Ounces - XPD">
+                <option value="Palladium Ounces - XPD">
                   Palladium Ounces – XPD
                 </option>
-                <option defaultValue="Peru Nuevos Soles - PEN">
+                <option value="Peru Nuevos Soles - PEN">
                   Peru Nuevos Soles – PEN
                 </option>
 
-                <option defaultValue="Philippines Pesos - PHP">
+                <option value="Philippines Pesos - PHP">
                   Philippines Pesos – PHP
                 </option>
-                <option defaultValue="Platinum Ounces - XPT">
+                <option value="Platinum Ounces - XPT">
                   Platinum Ounces – XPT
                 </option>
-                <option defaultValue="Poland Zlotych - PLN">
+                <option value="Poland Zlotych - PLN">
                   Poland Zlotych – PLN
                 </option>
-                <option defaultValue="Portugal Escudos - PTE">
+                <option value="Portugal Escudos - PTE">
                   Portugal Escudos – PTE
                 </option>
-                <option defaultValue="Qatar Riyals - QAR">
-                  Qatar Riyals – QAR
-                </option>
-                <option defaultValue="Romania New Lei - RON">
+                <option value="Qatar Riyals - QAR">Qatar Riyals – QAR</option>
+                <option value="Romania New Lei - RON">
                   Romania New Lei – RON
                 </option>
 
-                <option defaultValue="Romania Lei - ROL">
-                  Romania Lei – ROL
-                </option>
-                <option defaultValue="Russia Rubles - RUB">
-                  Russia Rubles – RUB
-                </option>
-                <option defaultValue="Saudi Arabia Riyals - SAR">
+                <option value="Romania Lei - ROL">Romania Lei – ROL</option>
+                <option value="Russia Rubles - RUB">Russia Rubles – RUB</option>
+                <option value="Saudi Arabia Riyals - SAR">
                   Saudi Arabia Riyals – SAR
                 </option>
-                <option defaultValue="Silver Ounces - XAG">
-                  Silver Ounces – XAG
-                </option>
-                <option defaultValue="Singapore Dollars - SGD">
+                <option value="Silver Ounces - XAG">Silver Ounces – XAG</option>
+                <option value="Singapore Dollars - SGD">
                   Singapore Dollars – SGD
                 </option>
-                <option defaultValue="Slovakia Koruny - SKK">
+                <option value="Slovakia Koruny - SKK">
                   Slovakia Koruny – SKK
                 </option>
 
-                <option defaultValue="Slovenia Tolars - SIT">
+                <option value="Slovenia Tolars - SIT">
                   Slovenia Tolars – SIT
                 </option>
-                <option defaultValue="South Africa Rand - ZAR">
+                <option value="South Africa Rand - ZAR">
                   South Africa Rand – ZAR
                 </option>
-                <option defaultValue="South Korea Won - KRW">
+                <option value="South Korea Won - KRW">
                   South Korea Won – KRW
                 </option>
-                <option defaultValue="Spain Pesetas - ESP">
-                  Spain Pesetas – ESP
-                </option>
-                <option defaultValue="Special Drawing Rights (IMF) - XDR">
+                <option value="Spain Pesetas - ESP">Spain Pesetas – ESP</option>
+                <option value="Special Drawing Rights (IMF) - XDR">
                   Special Drawing Rights (IMF) – XDR
                 </option>
-                <option defaultValue="Sri Lanka Rupees - LKR">
+                <option value="Sri Lanka Rupees - LKR">
                   Sri Lanka Rupees – LKR
                 </option>
 
-                <option defaultValue="Sudan Dinars - SDD">
-                  Sudan Dinars – SDD
-                </option>
-                <option defaultValue="Sweden Kronor - SEK">
-                  Sweden Kronor – SEK
-                </option>
-                <option defaultValue="Switzerland Francs - CHF">
+                <option value="Sudan Dinars - SDD">Sudan Dinars – SDD</option>
+                <option value="Sweden Kronor - SEK">Sweden Kronor – SEK</option>
+                <option value="Switzerland Francs - CHF">
                   Switzerland Francs – CHF
                 </option>
-                <option defaultValue="Taiwan New Dollars - TWD">
+                <option value="Taiwan New Dollars - TWD">
                   Taiwan New Dollars – TWD
                 </option>
-                <option defaultValue="Thailand Baht - THB">
-                  Thailand Baht – THB
-                </option>
-                <option defaultValue="Trinidad and Tobago Dollars - TTD">
+                <option value="Thailand Baht - THB">Thailand Baht – THB</option>
+                <option value="Trinidad and Tobago Dollars - TTD">
                   Trinidad and Tobago Dollars – TTD
                 </option>
 
-                <option defaultValue="Tunisia Dinars - TND">
+                <option value="Tunisia Dinars - TND">
                   Tunisia Dinars – TND
                 </option>
-                <option defaultValue="Turkey New Lira - TRY">
+                <option value="Turkey New Lira - TRY">
                   Turkey New Lira – TRY
                 </option>
-                <option defaultValue="United Arab Emirates Dirhams - AED">
+                <option value="United Arab Emirates Dirhams - AED">
                   United Arab Emirates Dirhams – AED
                 </option>
-                <option defaultValue="United Kingdom Pounds - GBP">
+                <option value="United Kingdom Pounds - GBP">
                   United Kingdom Pounds – GBP
                 </option>
-                <option defaultValue="United States Dollars - USD">
+                <option value="United States Dollars - USD">
                   United States Dollars – USD
                 </option>
-                <option defaultValue="Venezuela Bolivares - VEB">
+                <option value="Venezuela Bolivares - VEB">
                   Venezuela Bolivares – VEB
                 </option>
 
-                <option defaultValue="Vietnam Dong - VND">
-                  Vietnam Dong – VND
-                </option>
-                <option defaultValue="Zambia Kwacha - ZMK">
-                  Zambia Kwacha – ZMK
-                </option>
+                <option value="Vietnam Dong - VND">Vietnam Dong – VND</option>
+                <option value="Zambia Kwacha - ZMK">Zambia Kwacha – ZMK</option>
               </select>
             </div>
             <div className="form-item">
@@ -553,7 +542,7 @@ export class AddItemPage extends Component {
               <input
                 type="text"
                 placeholder="Notes:"
-                name="personal-notes"
+                name="notes"
                 id="personal-notes"
               />
             </div>
@@ -561,23 +550,21 @@ export class AddItemPage extends Component {
               <label htmlFor="privacy">
                 Please select this entries' privacy:
               </label>
-              <select name="privacy" id="privacy" required>
-                <option defaultValue="" disabled>
+              <select name="is_public" id="privacy" required>
+                <option value="" disabled>
                   Select Privacy:
                 </option>
-                <option defaultValue="public">Public</option>
-                <option defaultValue="private">Private</option>
+                <option value="1">Public</option>
+                <option value="0">Private</option>
               </select>
             </div>
-            <div className="form-item">
+            {/* <div className="form-item">
               <a href="#" className="myButton">
                 Cancel
               </a>
-            </div>
+            </div> */}
             <div className="form-item">
-              <a href="#" className="myButton">
-                Create
-              </a>
+              <input type="submit" value="Create" className="myButton" />
             </div>
           </form>
         </section>
