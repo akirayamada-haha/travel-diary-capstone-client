@@ -6,6 +6,7 @@ import SignIn from "./components/SignIn";
 import Registration from "./components/Registration";
 import DashboardPage from "./components/DashboardPage";
 import AddItemPage from "./components/AddItemPage";
+import EditItemPage from "./components/EditItemPage";
 import Footer from "./components/Footer";
 import "./normalize.css";
 import "./App.css";
@@ -31,6 +32,7 @@ export class App extends Component {
             <Route exact path='/registration' component={Registration}/>
             <Route exact path='/dashboard-page' component={DashboardPage}/>
             <Route exact path='/add-item-page' component={AddItemPage}/>
+            <Route exact path='/edit-item-page/:itemId' component={EditItemPage}/>
           </Switch>
           <Footer />
         </BrowserRouter>

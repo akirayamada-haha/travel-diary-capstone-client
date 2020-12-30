@@ -35,6 +35,89 @@ export class DashboardPage extends Component {
       .catch((error) => this.setState({ error }));
   }
 
+  deleteItem(event) {
+    event.preventDefault();
+
+    const data = {};
+
+    const formData = new FormData(event.target);
+
+    for (let value of formData) {
+      data[value[0]] = value[1];
+    }
+
+    console.log(data);
+
+    let { itemId } = data;
+    console.log(itemId);
+
+    fetch(`${config.API_ENDPOINT}/items/${itemId}`, {
+      method: "DELETE",
+      headers: {
+        "content-type": "application/json",
+      },
+    }).then((response) => {
+      window.location = `/dashboard-page`;
+    });
+  }
+
+  changeItemCategory(event) {
+    event.preventDefault();
+
+    const data = {};
+
+    const formData = new FormData(event.target);
+
+    for (let value of formData) {
+      data[value[0]] = value[1];
+    }
+
+    console.log(data);
+
+    let { itemId, newItemCategory } = data;
+    console.log(itemId, newItemCategory);
+
+    let payload = {
+      category: newItemCategory,
+    };
+
+    console.log("the payload: ", payload);
+    //define the API call parameters
+    const options = {
+      method: "PATCH",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    };
+
+    //useing the url and parameters above make the api call
+    fetch(`${config.API_ENDPOINT}/items/${itemId}`, options)
+      // if the api returns data ...
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Something went wrong, please try again later.");
+        }
+        // ... convert it to json
+        return res.json();
+      })
+      // use the json api output
+      .then((data) => {
+        //check if there is meaningfull data
+        console.log(data);
+        // check if there are no results
+        if (data.totalItems === 0) {
+          throw new Error("No data found");
+        }
+        window.location = `/dashboard-page`;
+      })
+      .catch((err) => {
+        // this.setState({
+        //   error: err.message,
+        // });
+      });
+  }
+
   render() {
     let showItemByUserId = "";
 
@@ -42,7 +125,8 @@ export class DashboardPage extends Component {
       showItemByUserId = <p>No Items</p>;
     } else {
       showItemByUserId = this.state.itemsByUserId.map((item, key) => {
-        // let iFrameUrl = `https://www.google.com/maps/embed/v1/place?q=${item.keyword}&key=AIzaSyA1FQ7ZcelspXQa-U2c7DGQ4cXA_chfEGw`
+        let iFrameUrl = `https://maps.google.com/maps?q=${item.keyword}&t=&z=13&ie=UTF8&iwloc=&output=embed`;
+        let editItemUrl = `/edit-item-page/${item.id}`;
         let ratingOutput = "";
         if (item.rating == 1) {
           ratingOutput = (
@@ -133,15 +217,38 @@ export class DashboardPage extends Component {
         let categoryButtonOutput = "";
         if (item.category == "Been There Done That!") {
           categoryButtonOutput = (
-            <a href="#" className="myButton">
-              On My List!
-            </a>
+            <form
+              className="changeItemCategoryForm"
+              onSubmit={this.changeItemCategory}
+            >
+              <input type="hidden" name="itemId" defaultValue={item.id}></input>
+              <input
+                type="hidden"
+                name="newItemCategory"
+                defaultValue="On My List!"
+              ></input>
+              <button type="submit" className="myButton">
+                <i className="fas "></i> Change To: 'On My List!'
+              </button>
+            </form>
           );
         } else {
           categoryButtonOutput = (
-            <a href="#" className="myButton">
-              Been There Done That!
-            </a>
+            <form
+              className="changeItemCategoryForm"
+              onSubmit={this.changeItemCategory}
+            >
+              <input type="hidden" name="itemId" defaultValue={item.id}></input>
+              <input
+                type="hidden"
+                name="newItemCategory"
+                defaultValue="Been There Done That!"
+              ></input>
+              <button type="submit" className="myButton">
+                <i className="fas "></i> Change To: 'Been There Done
+                That!'
+              </button>
+            </form>
           );
         }
 
@@ -156,11 +263,11 @@ export class DashboardPage extends Component {
               <i className="type-icon fas fa-hiking"></i>
               <i className="type-icon fas fa-business-time"></i>
               <i className="type-icon fas fa-bus"></i>
-              <i className="type-icon fas fa-landmark selected-icon"></i> Historical
+              <i className="type-icon fas fa-landmark selected-icon"></i>{" "}
+              Historical
             </li>
           );
-        }
-        else if (item.type == "Romantic") {
+        } else if (item.type == "Romantic") {
           typeOutput = (
             <li className="item-type">
               <i className="type-icon fas fa-futbol"></i>
@@ -173,8 +280,7 @@ export class DashboardPage extends Component {
               <i className="type-icon fas fa-heart selected-icon"></i> Romantic
             </li>
           );
-        }
-        else if (item.type == "Outdoor") {
+        } else if (item.type == "Outdoor") {
           typeOutput = (
             <li className="item-type">
               <i className="type-icon fas fa-futbol"></i>
@@ -187,8 +293,7 @@ export class DashboardPage extends Component {
               <i className="type-icon fas fa-hiking selected-icon"></i> Outdoor
             </li>
           );
-        }
-        else if (item.type == "Business") {
+        } else if (item.type == "Business") {
           typeOutput = (
             <li className="item-type">
               <i className="type-icon fas fa-futbol"></i>
@@ -198,11 +303,11 @@ export class DashboardPage extends Component {
               <i className="type-icon fas fa-hiking"></i>
               <i className="type-icon fas fa-bus"></i>
               <i className="type-icon fas fa-landmark"></i>
-              <i className="type-icon fas fa-business-time selected-icon"></i> Business
+              <i className="type-icon fas fa-business-time selected-icon"></i>{" "}
+              Business
             </li>
           );
-        }
-        else if (item.type == "Tourist") {
+        } else if (item.type == "Tourist") {
           typeOutput = (
             <li className="item-type">
               <i className="type-icon fas fa-futbol"></i>
@@ -215,8 +320,7 @@ export class DashboardPage extends Component {
               <i className="type-icon fas fa-bus selected-icon"></i> Tourist
             </li>
           );
-        }
-        else if (item.type == "Religious") {
+        } else if (item.type == "Religious") {
           typeOutput = (
             <li className="item-type">
               <i className="type-icon fas fa-futbol"></i>
@@ -226,11 +330,11 @@ export class DashboardPage extends Component {
               <i className="type-icon fas fa-business-time"></i>
               <i className="type-icon fas fa-bus"></i>
               <i className="type-icon fas fa-landmark"></i>
-              <i className="type-icon fas fa-praying-hands  selected-icon"></i> Religious
+              <i className="type-icon fas fa-praying-hands  selected-icon"></i>{" "}
+              Religious
             </li>
           );
-        }
-        else if (item.type == "Sport") {
+        } else if (item.type == "Sport") {
           typeOutput = (
             <li className="item-type">
               <i className="type-icon fas fa-praying-hands"></i>
@@ -243,8 +347,7 @@ export class DashboardPage extends Component {
               <i className="type-icon fas fa-futbol  selected-icon"></i> Sport
             </li>
           );
-        }
-        else if (item.type == "Educational") {
+        } else if (item.type == "Educational") {
           typeOutput = (
             <li className="item-type">
               <i className="type-icon fas fa-futbol"></i>
@@ -254,7 +357,8 @@ export class DashboardPage extends Component {
               <i className="type-icon fas fa-business-time"></i>
               <i className="type-icon fas fa-bus"></i>
               <i className="type-icon fas fa-landmark"></i>
-              <i className="type-icon fas fa-graduation-cap  selected-icon"></i> Educational
+              <i className="type-icon fas fa-graduation-cap  selected-icon"></i>{" "}
+              Educational
             </li>
           );
         }
@@ -262,20 +366,16 @@ export class DashboardPage extends Component {
         return (
           <div className="item-wrapper" key={key}>
             <div className="item-column">
-              {/* <iframe
+              <iframe
                 className="item-image"
                 width="100%"
                 height="350"
-                frameBorder="0"
-                style="border:0"
+                id="gmap_canvas"
                 src={iFrameUrl}
-                allowFullScreen
-              ></iframe> */}
-              <img
-                src="https://m.media-amazon.com/images/I/51+vl7wfRPL._AC_.jpg"
-                className="item-image"
-                alt="image of united states map"
-              />
+                frameBorder="0"
+                scrolling="no"
+                alt={item.keyword}
+              ></iframe>
             </div>
             <div className="item-column">
               <h3 className="item-title">{item.keyword}</h3>
@@ -293,14 +393,21 @@ export class DashboardPage extends Component {
                 {privacyOutput}
                 <li className="item-actions">
                   <div className="form-item">
-                    <a href="#" className="myButton">
+                    <Link to={editItemUrl} className="myButton">
                       Edit
-                    </a>
+                    </Link>
                   </div>
                   <div className="form-item">
-                    <a href="#" className="myButton">
-                      Delete
-                    </a>
+                    <form className="deleteItemForm" onSubmit={this.deleteItem}>
+                      <input
+                        type="hidden"
+                        name="itemId"
+                        defaultValue={item.id}
+                      ></input>
+                      <button type="submit" className="myButton">
+                        <i className="fas fa-trash-alt"></i> Delete
+                      </button>
+                    </form>
                   </div>
                 </li>
               </ul>
