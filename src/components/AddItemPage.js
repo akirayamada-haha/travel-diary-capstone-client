@@ -9,7 +9,7 @@ export class AddItemPage extends Component {
     this.state = {
       itemsByUserId: [],
       error: null,
-      databaseWorkouts: [],
+      // databaseWorkouts: [],
     };
   }
 

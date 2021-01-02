@@ -9,7 +9,7 @@ export class EditItemPage extends Component {
     this.state = {
       itemsByUserId: [],
       error: null,
-      databaseWorkouts: [],
+      // databaseWorkouts: [],
       currentItem: {},
     };
   }
@@ -23,10 +23,9 @@ export class EditItemPage extends Component {
       window.location = "/";
     }
 
-
     const itemId = this.props.match.params.itemId;
 
-    console.log(itemId)
+    console.log(itemId);
 
     let url = `${config.API_ENDPOINT}/items/${itemId}`;
 
@@ -36,7 +35,7 @@ export class EditItemPage extends Component {
       .then((response) => response.json())
 
       .then((data) => {
-        console.log(data)
+        console.log(data);
 
         this.setState({
           currentItem: data,
@@ -46,18 +45,6 @@ export class EditItemPage extends Component {
       .catch((err) => {
         console.log(err);
       });
-
-
-
-
-
-
-
-
-
-
-
-
   }
 
   handleSubmit = (e) => {
@@ -91,15 +78,17 @@ export class EditItemPage extends Component {
     console.log("the payload: ", payload);
     //define the API call parameters
     const options = {
-      method: "POST",
+      method: "PATCH",
       headers: {
         "content-type": "application/json",
       },
       body: JSON.stringify(payload),
     };
 
+    const itemId = this.props.match.params.itemId;
+
     //useing the url and parameters above make the api call
-    fetch(`${config.API_ENDPOINT}/items`, options)
+    fetch(`${config.API_ENDPOINT}/items/${itemId}`, options)
       // if the api returns data ...
       .then((res) => {
         if (!res.ok) {
@@ -136,8 +125,48 @@ export class EditItemPage extends Component {
       false
     );
 
-    
+    //let categoryOutput = "";
+    //if (this.state.item.category == "Been There Done That!" ... update categoryOutput to "Been There Done That!" & return categoryOutput as default option value
+    //else ... update categoryOutput to "On My List!" & return categoryOutput as default option value
 
+    //let privacyOutput = "";
+    //if (this.state.item.is_public == 0 ... update privacyOutput to 0 (private) & return privacyOutput as defaultoption value
+    //else ... update privacyOutput to 1 (public) & return privacyOutput as defaultoption value
+    let categorySelectOutput = (
+      <select name="category" id="visited" required>
+        <option value="" disabled>
+          Select Bucket Status
+        </option>
+        <option value="Been There Done That!">Been There Done That!</option>
+        <option value="On My List!">On My List!</option>
+      </select>
+    );
+    if (this.state.currentItem.category == "Been There Done That!") {
+      categorySelectOutput = (
+        <select name="category" id="visited" required>
+          <option value="" disabled>
+            Select Bucket Status
+          </option>
+          <option value="Been There Done That!" selected>
+            Been There Done That!
+          </option>
+          <option value="On My List!">On My List!</option>
+        </select>
+      );
+    } else {
+      categorySelectOutput = (
+        <select name="category" id="visited" required>
+          <option value="" disabled>
+            Select Bucket Status
+          </option>
+          <option value="Been There Done That!">Been There Done That!</option>
+          <option value="On My List!" selected>
+            On My List!
+          </option>
+        </select>
+      );
+    }
+    //<option value="Been There Done That!" {(this.state.currentItem.category == "Been There Done That!") ? ( : )}>
     return (
       <div>
         <section className="add-item-page">
@@ -157,15 +186,7 @@ export class EditItemPage extends Component {
             </div>
             <div className="form-item">
               <label htmlFor="visted">Have you been here before?</label>
-              <select name="category" id="visited" required>
-                <option value="" disabled>
-                  Select Bucket Status
-                </option>
-                <option value="Been There Done That!">
-                  Been There Done That!
-                </option>
-                <option value="On My List!">On My List!</option>
-              </select>
+              {categorySelectOutput}
             </div>
             <div className="form-item">
               <label htmlFor="rating">How would you rate this location?:</label>
@@ -173,11 +194,46 @@ export class EditItemPage extends Component {
                 <option value="" disabled>
                   Select Rating
                 </option>
-                <option value="1">1 Star</option>
-                <option value="2">2 Stars</option>
-                <option value="3">3 Stars</option>
-                <option value="4">4 Stars</option>
-                <option value="5">5 Stars</option>
+                {this.state.currentItem.rating == "1" ? (
+                  <option value="1" selected>
+                    1 Star
+                  </option>
+                ) : (
+                  <option value="1">1 Star</option>
+                )}
+                {this.state.currentItem.rating == "2" ? (
+                  <option value="2" selected>
+                    2 Stars
+                  </option>
+                ) : (
+                  <option value="2">2 Stars</option>
+                )}
+                {this.state.currentItem.rating == "3" ? (
+                  <option value="3" selected>
+                    3 Stars
+                  </option>
+                ) : (
+                  <option value="3">3 Stars</option>
+                )}
+
+
+                {this.state.currentItem.rating == "4" ? (
+                  <option value="4" selected>
+                    4 Stars
+                  </option>
+                ) : (
+                  <option value="4">4 Stars</option>
+                )}
+
+
+                {this.state.currentItem.rating == "5" ? (
+                  <option value="5" selected>
+                    5 Stars
+                  </option>
+                ) : (
+                  <option value="5">5 Stars</option>
+                )}
+
               </select>
             </div>
             <div className="form-item">
@@ -585,6 +641,7 @@ export class EditItemPage extends Component {
                 placeholder="Notes:"
                 name="notes"
                 id="personal-notes"
+                defaultValue={this.state.currentItem.notes}
               />
             </div>
             <div className="form-item">
@@ -605,7 +662,11 @@ export class EditItemPage extends Component {
               </a>
             </div> */}
             <div className="form-item">
-              <input type="submit" value="Create" className="myButton" />
+              <input
+                type="submit"
+                value="Confirm Changes"
+                className="myButton"
+              />
             </div>
           </form>
         </section>
