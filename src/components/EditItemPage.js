@@ -125,52 +125,10 @@ export class EditItemPage extends Component {
       false
     );
 
-    //let categoryOutput = "";
-    //if (this.state.item.category == "Been There Done That!" ... update categoryOutput to "Been There Done That!" & return categoryOutput as default option value
-    //else ... update categoryOutput to "On My List!" & return categoryOutput as default option value
-
-    //let privacyOutput = "";
-    //if (this.state.item.is_public == 0 ... update privacyOutput to 0 (private) & return privacyOutput as defaultoption value
-    //else ... update privacyOutput to 1 (public) & return privacyOutput as defaultoption value
-    let categorySelectOutput = (
-      <select name="category" id="visited" required>
-        <option value="" disabled>
-          Select Bucket Status
-        </option>
-        <option value="Been There Done That!">Been There Done That!</option>
-        <option value="On My List!">On My List!</option>
-      </select>
-    );
-    if (this.state.currentItem.category == "Been There Done That!") {
-      categorySelectOutput = (
-        <select name="category" id="visited" required>
-          <option value="" disabled>
-            Select Bucket Status
-          </option>
-          <option value="Been There Done That!" selected>
-            Been There Done That!
-          </option>
-          <option value="On My List!">On My List!</option>
-        </select>
-      );
-    } else {
-      categorySelectOutput = (
-        <select name="category" id="visited" required>
-          <option value="" disabled>
-            Select Bucket Status
-          </option>
-          <option value="Been There Done That!">Been There Done That!</option>
-          <option value="On My List!" selected>
-            On My List!
-          </option>
-        </select>
-      );
-    }
-    //<option value="Been There Done That!" {(this.state.currentItem.category == "Been There Done That!") ? ( : )}>
     return (
       <div>
         <section className="add-item-page">
-          <h1>New Item</h1>
+          <h1>Edit Item</h1>
           <form className="create-new-item" onSubmit={this.handleSubmit}>
             {errorMessage}
             <div className="add-item">
@@ -186,7 +144,27 @@ export class EditItemPage extends Component {
             </div>
             <div className="form-item">
               <label htmlFor="visted">Have you been here before?</label>
-              {categorySelectOutput}
+              <select name="category" id="visited" required>
+                <option value="" disabled>
+                  Select Bucket Status
+                </option>
+                {this.state.currentItem.category == "Been There Done That!" ? (
+                  <option value="Been There Done That!" selected>
+                    Been There Done That!
+                  </option>
+                ) : (
+                  <option value="Been There Done That!">
+                    Been There Done That!
+                  </option>
+                )}
+                {this.state.currentItem.category == "On My List!" ? (
+                  <option value="On My List!" selected>
+                    On My List!
+                  </option>
+                ) : (
+                  <option value="On My List!">On My List!</option>
+                )}
+              </select>
             </div>
             <div className="form-item">
               <label htmlFor="rating">How would you rate this location?:</label>
@@ -215,8 +193,6 @@ export class EditItemPage extends Component {
                 ) : (
                   <option value="3">3 Stars</option>
                 )}
-
-
                 {this.state.currentItem.rating == "4" ? (
                   <option value="4" selected>
                     4 Stars
@@ -225,7 +201,6 @@ export class EditItemPage extends Component {
                   <option value="4">4 Stars</option>
                 )}
 
-
                 {this.state.currentItem.rating == "5" ? (
                   <option value="5" selected>
                     5 Stars
@@ -233,9 +208,9 @@ export class EditItemPage extends Component {
                 ) : (
                   <option value="5">5 Stars</option>
                 )}
-
               </select>
             </div>
+
             <div className="form-item">
               <label htmlFor="cost">
                 How would you rate this location's cost?:
@@ -244,11 +219,30 @@ export class EditItemPage extends Component {
                 <option value="" disabled>
                   Select Cost
                 </option>
-                <option value="1">$</option>
-                <option value="2">$$</option>
-                <option value="3">$$$</option>
+                {this.state.currentItem.cost == "1" ? (
+                  <option value="1" selected>
+                    $
+                  </option>
+                ) : (
+                  <option value="1">$</option>
+                )}
+                {this.state.currentItem.cost == "2" ? (
+                  <option value="2" selected>
+                    $$
+                  </option>
+                ) : (
+                  <option value="2">$$</option>
+                )}
+                {this.state.currentItem.cost == "3" ? (
+                  <option value="3" selected>
+                    $$$
+                  </option>
+                ) : (
+                  <option value="3">$$$</option>
+                )}
               </select>
             </div>
+
             <div className="form-item">
               <label htmlFor="language">
                 What language is primarily spoken here?:
@@ -261,80 +255,556 @@ export class EditItemPage extends Component {
                 <option value="" disabled>
                   Select Language
                 </option>
-                <option value="English">English</option>
-                <option value="Afrikaans">Afrikaans</option>
-                <option value="Albanian">Albanian</option>
-                <option value="Arabic">Arabic</option>
-                <option value="Armenian">Armenian</option>
-                <option value="Basque">Basque</option>
-                <option value="Bengali">Bengali</option>
-                <option value="Bulgarian">Bulgarian</option>
-                <option value="Catalan">Catalan</option>
-                <option value="Cambodian">Cambodian</option>
-                <option value="Chinese (Mandarin)">Chinese (Mandarin)</option>
-                <option value="Croatian">Croatian</option>
-                <option value="Czech">Czech</option>
-                <option value="Danish">Danish</option>
-                <option value="Dutch">Dutch</option>
-                <option value="Estonian">Estonian</option>
-                <option value="Fiji">Fiji</option>
-                <option value="Finnish">Finnish</option>
-                <option value="French">French</option>
-                <option value="Georgian">Georgian</option>
-                <option value="German">German</option>
-                <option value="Greek">Greek</option>
-                <option value="Gujarati">Gujarati</option>
-                <option value="Hebrew">Hebrew</option>
-                <option value="Hindi">Hindi</option>
-                <option value="Hungarian">Hungarian</option>
-                <option value="Icelandic">Icelandic</option>
-                <option value="Indonesian">Indonesian</option>
-                <option value="Irish">Irish</option>
-                <option value="Italian">Italian</option>
-                <option value="Japanese">Japanese</option>
-                <option value="Javanese">Javanese</option>
-                <option value="Korean">Korean</option>
-                <option value="Latin">Latin</option>
-                <option value="Latvian">Latvian</option>
-                <option value="Lithuanian">Lithuanian</option>
-                <option value="Macedonian">Macedonian</option>
-                <option value="Malay">Malay</option>
-                <option value="Malayalam">Malayalam</option>
-                <option value="Maltese">Maltese</option>
-                <option value="Maori">Maori</option>
-                <option value="Marathi">Marathi</option>
-                <option value="Mongolian">Mongolian</option>
-                <option value="Nepali">Nepali</option>
-                <option value="Norwegian">Norwegian</option>
-                <option value="Persian">Persian</option>
-                <option value="Polish">Polish</option>
-                <option value="Portuguese">Portuguese</option>
-                <option value="Punjabi">Punjabi</option>
-                <option value="Quechua">Quechua</option>
-                <option value="Romanian">Romanian</option>
-                <option value="Russian">Russian</option>
-                <option value="Samoan">Samoan</option>
-                <option value="Serbian">Serbian</option>
-                <option value="Slovak">Slovak</option>
-                <option value="Slovenian">Slovenian</option>
-                <option value="Spanish">Spanish</option>
-                <option value="Swahili">Swahili</option>
-                <option value="Swedish ">Swedish </option>
-                <option value="Tamil">Tamil</option>
-                <option value="Tatar">Tatar</option>
-                <option value="Telugu">Telugu</option>
-                <option value="Thai">Thai</option>
-                <option value="Tibetan">Tibetan</option>
-                <option value="Tonga">Tonga</option>
-                <option value="Turkish">Turkish</option>
-                <option value="Ukrainian">Ukrainian</option>
-                <option value="Urdu">Urdu</option>
-                <option value="Uzbek">Uzbek</option>
-                <option value="Vietnamese">Vietnamese</option>
-                <option value="Welsh">Welsh</option>
-                <option value="Xhosa">Xhosa</option>
+
+                {this.state.currentItem.language == "English" ? (
+                  <option value="English" selected>
+                    English
+                  </option>
+                ) : (
+                  <option value="English">English</option>
+                )}
+
+                {this.state.currentItem.language == "Afrikaans" ? (
+                  <option value="Afrikaans" selected>
+                    Afrikaans
+                  </option>
+                ) : (
+                  <option value="Afrikaans">Afrikaans</option>
+                )}
+
+                {this.state.currentItem.language == "Albanian" ? (
+                  <option value="Albanian" selected>
+                    Albanian
+                  </option>
+                ) : (
+                  <option value="Albanian">Albanian</option>
+                )}
+
+                {this.state.currentItem.language == "Arabic" ? (
+                  <option value="Arabic" selected>
+                    Arabic
+                  </option>
+                ) : (
+                  <option value="Arabic">Arabic</option>
+                )}
+
+                {this.state.currentItem.language == "Armenian" ? (
+                  <option value="Armenian" selected>
+                    Armenian
+                  </option>
+                ) : (
+                  <option value="Armenian">Armenian</option>
+                )}
+                {this.state.currentItem.language == "Basque" ? (
+                  <option value="Basque" selected>
+                    Basque
+                  </option>
+                ) : (
+                  <option value="Basque">Basque</option>
+                )}
+                {this.state.currentItem.language == "Bengali" ? (
+                  <option value="Bengali" selected>
+                    Bengali
+                  </option>
+                ) : (
+                  <option value="Bengali">Bengali</option>
+                )}
+                {this.state.currentItem.language == "Bulgarian" ? (
+                  <option value="Bulgarian" selected>
+                    Bulgarian
+                  </option>
+                ) : (
+                  <option value="Bulgarian">Bulgarian</option>
+                )}
+                {this.state.currentItem.language == "Catalan" ? (
+                  <option value="Catalan" selected>
+                    Catalan
+                  </option>
+                ) : (
+                  <option value="Catalan">Catalan</option>
+                )}
+
+                {this.state.currentItem.language == "Cambodian" ? (
+                  <option value="Cambodian" selected>
+                    Cambodian
+                  </option>
+                ) : (
+                  <option value="Cambodian">Cambodian</option>
+                )}
+                {this.state.currentItem.language == "Chinese (Mandarin)" ? (
+                  <option value="Chinese (Mandarin)" selected>
+                    Chinese (Mandarin)
+                  </option>
+                ) : (
+                  <option value="Chinese (Mandarin)">Chinese (Mandarin)</option>
+                )}
+                {this.state.currentItem.language == "Croatian" ? (
+                  <option value="Croatian" selected>
+                    Croatian
+                  </option>
+                ) : (
+                  <option value="Croatian">Croatian</option>
+                )}
+                {this.state.currentItem.language == "Czech" ? (
+                  <option value="Czech" selected>
+                    Czech
+                  </option>
+                ) : (
+                  <option value="Czech">Czech</option>
+                )}
+                {this.state.currentItem.language == "Danish" ? (
+                  <option value="Danish" selected>
+                    Danish
+                  </option>
+                ) : (
+                  <option value="Danish">Danish</option>
+                )}
+                {this.state.currentItem.language == "Dutch" ? (
+                  <option value="Dutch" selected>
+                    Dutch
+                  </option>
+                ) : (
+                  <option value="Dutch">Dutch</option>
+                )}
+                {this.state.currentItem.language == "Estonian" ? (
+                  <option value="Estonian" selected>
+                    Estonian
+                  </option>
+                ) : (
+                  <option value="Estonian">Estonian</option>
+                )}
+                {this.state.currentItem.language == "Fiji" ? (
+                  <option value="Fiji" selected>
+                    Fiji
+                  </option>
+                ) : (
+                  <option value="Fiji">Fiji</option>
+                )}
+                {this.state.currentItem.language == "Finnish" ? (
+                  <option value="Finnish" selected>
+                    Finnish
+                  </option>
+                ) : (
+                  <option value="Finnish">Finnish</option>
+                )}
+                {this.state.currentItem.language == "French" ? (
+                  <option value="French" selected>
+                    French
+                  </option>
+                ) : (
+                  <option value="French">French</option>
+                )}
+                {this.state.currentItem.language == "Georgian" ? (
+                  <option value="Georgian" selected>
+                    Georgian
+                  </option>
+                ) : (
+                  <option value="Georgian">Georgian</option>
+                )}
+
+                {this.state.currentItem.language == "German" ? (
+                  <option value="German" selected>
+                    German
+                  </option>
+                ) : (
+                  <option value="German">German</option>
+                )}
+                {this.state.currentItem.language == "Greek" ? (
+                  <option value="Greek" selected>
+                    Greek
+                  </option>
+                ) : (
+                  <option value="Greek">Greek</option>
+                )}
+                {this.state.currentItem.language == "Gujarati" ? (
+                  <option value="Gujarati" selected>
+                    Gujarati
+                  </option>
+                ) : (
+                  <option value="Gujarati">Gujarati</option>
+                )}
+                {this.state.currentItem.language == "Hebrew" ? (
+                  <option value="Hebrew" selected>
+                    Hebrew
+                  </option>
+                ) : (
+                  <option value="Hebrew">Hebrew</option>
+                )}
+                {this.state.currentItem.language == "Hindi" ? (
+                  <option value="Hindi" selected>
+                    Hindi
+                  </option>
+                ) : (
+                  <option value="Hindi">Hindi</option>
+                )}
+                {this.state.currentItem.language == "Hungarian" ? (
+                  <option value="Hungarian" selected>
+                    Hungarian
+                  </option>
+                ) : (
+                  <option value="Hungarian">Hungarian</option>
+                )}
+                {this.state.currentItem.language == "Icelandic" ? (
+                  <option value="Icelandic" selected>
+                    Icelandic
+                  </option>
+                ) : (
+                  <option value="Icelandic">Icelandic</option>
+                )}
+                {this.state.currentItem.language == "Indonesian" ? (
+                  <option value="Indonesian" selected>
+                    Indonesian
+                  </option>
+                ) : (
+                  <option value="Indonesian">Indonesian</option>
+                )}
+                {this.state.currentItem.language == "Irish" ? (
+                  <option value="Irish" selected>
+                    Irish
+                  </option>
+                ) : (
+                  <option value="Irish">Irish</option>
+                )}
+                {this.state.currentItem.language == "Italian" ? (
+                  <option value="Italian" selected>
+                    Italian
+                  </option>
+                ) : (
+                  <option value="Italian">Italian</option>
+                )}
+                {this.state.currentItem.language == "Japanese" ? (
+                  <option value="Japanese" selected>
+                    Japanese
+                  </option>
+                ) : (
+                  <option value="Japanese">Japanese</option>
+                )}
+                {this.state.currentItem.language == "Javanese" ? (
+                  <option value="Javanese" selected>
+                    Javanese
+                  </option>
+                ) : (
+                  <option value="Javanese">Javanese</option>
+                )}
+                {this.state.currentItem.language == "Korean" ? (
+                  <option value="Korean" selected>
+                    Korean
+                  </option>
+                ) : (
+                  <option value="Korean">Korean</option>
+                )}
+                {this.state.currentItem.language == "Latin" ? (
+                  <option value="Latin" selected>
+                    Latin
+                  </option>
+                ) : (
+                  <option value="Latin">Latin</option>
+                )}
+                {this.state.currentItem.language == "Latvian" ? (
+                  <option value="Latvian" selected>
+                    Latvian
+                  </option>
+                ) : (
+                  <option value="Latvian">Latvian</option>
+                )}
+                {this.state.currentItem.language == "Lithuanian" ? (
+                  <option value="Lithuanian" selected>
+                    Lithuanian
+                  </option>
+                ) : (
+                  <option value="Lithuanian">Lithuanian</option>
+                )}
+
+                {this.state.currentItem.language == "Macedonian" ? (
+                  <option value="Macedonian" selected>
+                    Macedonian
+                  </option>
+                ) : (
+                  <option value="Macedonian">Macedonian</option>
+                )}
+
+                {this.state.currentItem.language == "Malay" ? (
+                  <option value="Malay" selected>
+                    Malay
+                  </option>
+                ) : (
+                  <option value="Malay">Malay</option>
+                )}
+
+                {this.state.currentItem.language == "Malayalam" ? (
+                  <option value="Malayalam" selected>
+                    Malayalam
+                  </option>
+                ) : (
+                  <option value="Malayalam">Malayalam</option>
+                )}
+
+                {this.state.currentItem.language == "Maltese" ? (
+                  <option value="Maltese" selected>
+                    Maltese
+                  </option>
+                ) : (
+                  <option value="Maltese">Maltese</option>
+                )}
+
+                {this.state.currentItem.language == "Maori" ? (
+                  <option value="Maori" selected>
+                    Maori
+                  </option>
+                ) : (
+                  <option value="Maori">Maori</option>
+                )}
+
+                {this.state.currentItem.language == "Marathi" ? (
+                  <option value="Marathi" selected>
+                    Marathi
+                  </option>
+                ) : (
+                  <option value="Marathi">Marathi</option>
+                )}
+
+                {this.state.currentItem.language == "Mongolian" ? (
+                  <option value="Mongolian" selected>
+                    Mongolian
+                  </option>
+                ) : (
+                  <option value="Mongolian">Mongolian</option>
+                )}
+
+                {this.state.currentItem.language == "Nepali" ? (
+                  <option value="Nepali" selected>
+                    Nepali
+                  </option>
+                ) : (
+                  <option value="Nepali">Nepali</option>
+                )}
+
+                {this.state.currentItem.language == "Norwegian" ? (
+                  <option value="Norwegian" selected>
+                    Norwegian
+                  </option>
+                ) : (
+                  <option value="Norwegian">Norwegian</option>
+                )}
+
+                {this.state.currentItem.language == "Persian" ? (
+                  <option value="Persian" selected>
+                    Persian
+                  </option>
+                ) : (
+                  <option value="Persian">Persian</option>
+                )}
+
+                {this.state.currentItem.language == "Polish" ? (
+                  <option value="Polish" selected>
+                    Polish
+                  </option>
+                ) : (
+                  <option value="Polish">Polish</option>
+                )}
+
+                {this.state.currentItem.language == "Portuguese" ? (
+                  <option value="Portuguese" selected>
+                    Portuguese
+                  </option>
+                ) : (
+                  <option value="Portuguese">Portuguese</option>
+                )}
+
+                {this.state.currentItem.language == "Punjabi" ? (
+                  <option value="Punjabi" selected>
+                    Punjabi
+                  </option>
+                ) : (
+                  <option value="Punjabi">Punjabi</option>
+                )}
+
+                {this.state.currentItem.language == "Quechua" ? (
+                  <option value="Quechua" selected>
+                    Quechua
+                  </option>
+                ) : (
+                  <option value="Quechua">Quechua</option>
+                )}
+
+                {this.state.currentItem.language == "Romanian" ? (
+                  <option value="Romanian" selected>
+                    Romanian
+                  </option>
+                ) : (
+                  <option value="Romanian">Romanian</option>
+                )}
+
+                {this.state.currentItem.language == "Russian" ? (
+                  <option value="Russian" selected>
+                    Russian
+                  </option>
+                ) : (
+                  <option value="Russian">Russian</option>
+                )}
+
+                {this.state.currentItem.language == "Samoan" ? (
+                  <option value="Samoan" selected>
+                    Samoan
+                  </option>
+                ) : (
+                  <option value="Samoan">Samoan</option>
+                )}
+
+                {this.state.currentItem.language == "Serbian" ? (
+                  <option value="Serbian" selected>
+                    Serbian
+                  </option>
+                ) : (
+                  <option value="Serbian">Serbian</option>
+                )}
+
+                {this.state.currentItem.language == "Slovak" ? (
+                  <option value="Slovak" selected>
+                    Slovak
+                  </option>
+                ) : (
+                  <option value="Slovak">Slovak</option>
+                )}
+
+                {this.state.currentItem.language == "Slovenian" ? (
+                  <option value="Slovenian" selected>
+                    Slovenian
+                  </option>
+                ) : (
+                  <option value="Slovenian">Slovenian</option>
+                )}
+
+                {this.state.currentItem.language == "Spanish" ? (
+                  <option value="Spanish" selected>
+                    Spanish
+                  </option>
+                ) : (
+                  <option value="Spanish">Spanish</option>
+                )}
+
+                {this.state.currentItem.language == "Swahili" ? (
+                  <option value="Swahili" selected>
+                    Swahili
+                  </option>
+                ) : (
+                  <option value="Swahili">Swahili</option>
+                )}
+
+                {this.state.currentItem.language == "Swedish" ? (
+                  <option value="Swedish" selected>
+                    Swedish
+                  </option>
+                ) : (
+                  <option value="Swedish">Swedish</option>
+                )}
+
+                {this.state.currentItem.language == "Tamil" ? (
+                  <option value="Tamil" selected>
+                    Tamil
+                  </option>
+                ) : (
+                  <option value="Tamil">Tamil</option>
+                )}
+
+                {this.state.currentItem.language == "Tatar" ? (
+                  <option value="Tatar" selected>
+                    Tatar
+                  </option>
+                ) : (
+                  <option value="Tatar">Tatar</option>
+                )}
+
+                {this.state.currentItem.language == "Telugu" ? (
+                  <option value="Telugu" selected>
+                    Telugu
+                  </option>
+                ) : (
+                  <option value="Telugu">Telugu</option>
+                )}
+
+                {this.state.currentItem.language == "Thai" ? (
+                  <option value="Thai" selected>
+                    Thai
+                  </option>
+                ) : (
+                  <option value="Thai">Thai</option>
+                )}
+
+                {this.state.currentItem.language == "Tibetan" ? (
+                  <option value="Tibetan" selected>
+                    Tibetan
+                  </option>
+                ) : (
+                  <option value="Tibetan">Tibetan</option>
+                )}
+
+                {this.state.currentItem.language == "Tonga" ? (
+                  <option value="Tonga" selected>
+                    Tonga
+                  </option>
+                ) : (
+                  <option value="Tonga">Tonga</option>
+                )}
+
+                {this.state.currentItem.language == "Turkish" ? (
+                  <option value="Turkish" selected>
+                    Turkish
+                  </option>
+                ) : (
+                  <option value="Turkish">Turkish</option>
+                )}
+
+                {this.state.currentItem.language == "Ukrainian" ? (
+                  <option value="Ukrainian" selected>
+                    Ukrainian
+                  </option>
+                ) : (
+                  <option value="Ukrainian">Ukrainian</option>
+                )}
+
+                {this.state.currentItem.language == "Urdu" ? (
+                  <option value="Urdu" selected>
+                    Urdu
+                  </option>
+                ) : (
+                  <option value="Urdu">Urdu</option>
+                )}
+
+                {this.state.currentItem.language == "Uzbek" ? (
+                  <option value="Uzbek" selected>
+                    Uzbek
+                  </option>
+                ) : (
+                  <option value="Uzbek">Uzbek</option>
+                )}
+
+                {this.state.currentItem.language == "Vietnamese" ? (
+                  <option value="Vietnamese" selected>
+                    Vietnamese
+                  </option>
+                ) : (
+                  <option value="Vietnamese">Vietnamese</option>
+                )}
+
+                {this.state.currentItem.language == "Welsh" ? (
+                  <option value="Welsh" selected>
+                    Welsh
+                  </option>
+                ) : (
+                  <option value="Welsh">Welsh</option>
+                )}
+
+                {this.state.currentItem.language == "Xhosa" ? (
+                  <option value="Xhosa" selected>
+                    Xhosa
+                  </option>
+                ) : (
+                  <option value="Xhosa">Xhosa</option>
+                )}
               </select>
             </div>
+
             <div className="form-item">
               <label htmlFor="type">
                 What kind of trip would you suggest?:
@@ -343,16 +813,65 @@ export class EditItemPage extends Component {
                 <option value="" disabled>
                   Select Type
                 </option>
-                <option value="Historical">Historical</option>
-                <option value="Romantic">Romantic</option>
-                <option value="Outdoor">Outdoor</option>
-                <option value="Business">Business</option>
-                <option value="Tourist">Tourist</option>
-                <option value="Religious">Religious</option>
-                <option value="Sport">Sport</option>
-                <option value="Educational">Educational</option>
+                {this.state.currentItem.type == "Historical" ? (
+                  <option value="Historical" selected>
+                  Historical
+                  </option>
+                ) : (
+                  <option value="Historical">Historical</option>
+                )}
+                {this.state.currentItem.type == "Romantic" ? (
+                  <option value="Romantic" selected>
+                  Romantic
+                  </option>
+                ) : (
+                  <option value="Romantic">Romantic</option>
+                )}
+                {this.state.currentItem.type == "Outdoor" ? (
+                  <option value="Outdoor" selected>
+                  Outdoor
+                  </option>
+                ) : (
+                  <option value="Outdoor">Outdoor</option>
+                )}
+                {this.state.currentItem.type == "Business" ? (
+                  <option value="Business" selected>
+                  Business
+                  </option>
+                ) : (
+                  <option value="Business">Business</option>
+                )}
+                {this.state.currentItem.type == "Tourist" ? (
+                  <option value="Tourist" selected>
+                  Tourist
+                  </option>
+                ) : (
+                  <option value="Tourist">Tourist</option>
+                )}
+                {this.state.currentItem.type == "Religious" ? (
+                  <option value="Religious" selected>
+                  Religious
+                  </option>
+                ) : (
+                  <option value="Religious">Religious</option>
+                )}
+                {this.state.currentItem.type == "Sport" ? (
+                  <option value="Sport" selected>
+                  Sport
+                  </option>
+                ) : (
+                  <option value="Sport">Sport</option>
+                )}
+                {this.state.currentItem.type == "Educational" ? (
+                  <option value="Educational" selected>
+                  Educational
+                  </option>
+                ) : (
+                  <option value="Educational">Educational</option>
+                )}
               </select>
             </div>
+
             <div className="form-item">
               <label htmlFor="currencies">
                 What is this region's currency?
@@ -361,80 +880,205 @@ export class EditItemPage extends Component {
                 <option value="" disabled>
                   Select Currency
                 </option>
-                <option value="America (United States) Dollars - USD">
-                  America (United States) Dollars – USD
-                </option>
-                <option value="Afghanistan Afghanis - AFN">
-                  Afghanistan Afghanis – AFN
-                </option>
-                <option value="Albania Leke - ALL">Albania Leke – ALL</option>
-                <option value="Algeria Dinars - DZD">
-                  Algeria Dinars – DZD
-                </option>
-                <option value="Argentina Pesos - ARS">
-                  Argentina Pesos – ARS
-                </option>
-                <option value="Australia Dollars - AUD">
-                  Australia Dollars – AUD
-                </option>
-                <option value="Austria Schillings - ATS">
-                  Austria Schillings – ATS
-                </option>
+                {this.state.currentItem.currency == "America (United States) Dollars - USD" ? (
+                  <option value="America (United States) Dollars - USD" selected>
+                  America (United States) Dollars - USD
+                  </option>
+                ) : (
+                  <option value="America (United States) Dollars - USD">America (United States) Dollars - USD</option>
+                )}
+                {this.state.currentItem.currency == "Afghanistan Afghanis - AFN" ? (
+                  <option value="Afghanistan Afghanis - AFN" selected>
+                  Afghanistan Afghanis - AFN
+                  </option>
+                ) : (
+                  <option value="Afghanistan Afghanis - AFN">Afghanistan Afghanis - AFN</option>
+                )}
+                {this.state.currentItem.currency == "Albania Leke - ALL" ? (
+                  <option value="Albania Leke - ALL" selected>
+                  Albania Leke - ALL
+                  </option>
+                ) : (
+                  <option value="Albania Leke - ALL">Albania Leke - ALL</option>
+                )}
+                {this.state.currentItem.currency == "Algeria Dinars - DZD" ? (
+                  <option value="Algeria Dinars - DZD" selected>
+                  Algeria Dinars - DZD
+                  </option>
+                ) : (
+                  <option value="Algeria Dinars - DZD">Algeria Dinars - DZD</option>
+                )}
+                {this.state.currentItem.currency == "Argentina Pesos - ARS" ? (
+                  <option value="Argentina Pesos - ARS" selected>
+                  Argentina Pesos - ARS
+                  </option>
+                ) : (
+                  <option value="Argentina Pesos - ARS">Argentina Pesos - ARS</option>
+                )}
+                {this.state.currentItem.currency == "Australia Dollars - AUD" ? (
+                  <option value="Australia Dollars - AUD" selected>
+                  Australia Dollars - AUD
+                  </option>
+                ) : (
+                  <option value="Australia Dollars - AUD">Australia Dollars - AUD</option>
+                )}
+                {this.state.currentItem.currency == "Austria Schillings - ATS" ? (
+                  <option value="Austria Schillings - ATS" selected>
+                  Austria Schillings - ATS
+                  </option>
+                ) : (
+                  <option value="Austria Schillings - ATS">Austria Schillings - ATS</option>
+                )}
+                {this.state.currentItem.currency == "Bahamas Dollars - BSD" ? (
+                  <option value="Bahamas Dollars - BSD" selected>
+                  Bahamas Dollars - BSD
+                  </option>
+                ) : (
+                  <option value="Bahamas Dollars - BSD">ABahamas Dollars - BSD</option>
+                )}
+                {this.state.currentItem.currency == "Bahrain Dinars - BHD" ? (
+                  <option value="Bahrain Dinars - BHD" selected>
+                  Bahrain Dinars - BHD
+                  </option>
+                ) : (
+                  <option value="Bahrain Dinars - BHD">Bahrain Dinars - BHD</option>
+                )}
+                {this.state.currentItem.currency == "Bangladesh Taka - BDT" ? (
+                  <option value="Bangladesh Taka - BDT" selected>
+                  Bangladesh Taka - BDT
+                  </option>
+                ) : (
+                  <option value="Bangladesh Taka - BDT">Bangladesh Taka - BDT</option>
+                )}
+                {this.state.currentItem.currency == "Barbados Dollars - BBD" ? (
+                  <option value="Barbados Dollars - BBD" selected>
+                  Barbados Dollars - BBD
+                  </option>
+                ) : (
+                  <option value="Barbados Dollars - BBD">Barbados Dollars - BBD</option>
+                )}
+                {this.state.currentItem.currency == "Belgium Francs - BEF" ? (
+                  <option value="Belgium Francs - BEF" selected>
+                  Belgium Francs - BEF
+                  </option>
+                ) : (
+                  <option value="Belgium Francs - BEF">Belgium Francs - BEF</option>
+                )}
+                {this.state.currentItem.currency == "Bermuda Dollars - BMD" ? (
+                  <option value="Bermuda Dollars - BMD" selected>
+                  Bermuda Dollars - BMD
+                  </option>
+                ) : (
+                  <option value="Bermuda Dollars - BMD">Bermuda Dollars - BMD</option>
+                )}
+                {this.state.currentItem.currency == "Brazil Reals - BRL" ? (
+                  <option value="Brazil Reals - BRL" selected>
+                  Brazil Reals - BRL
+                  </option>
+                ) : (
+                  <option value="Brazil Reals - BRL">Brazil Reals - BRL</option>
+                )}
+                {this.state.currentItem.currency == "Bulgaria Leva - BGN" ? (
+                  <option value="Bulgaria Leva - BGN" selected>
+                  Bulgaria Leva - BGN
+                  </option>
+                ) : (
+                  <option value="Bulgaria Leva - BGN">Bulgaria Leva - BGN</option>
+                )}
+                {this.state.currentItem.currency == "Canada Dollars - CAD" ? (
+                  <option value="Canada Dollars - CAD" selected>
+                  Canada Dollars - CAD
+                  </option>
+                ) : (
+                  <option value="Canada Dollars - CAD">Canada Dollars - CAD</option>
+                )}
+                {this.state.currentItem.currency == "CFA BCEAO Francs - XOF" ? (
+                  <option value="CFA BCEAO Francs - XOF" selected>
+                  CFA BCEAO Francs - XOF
+                  </option>
+                ) : (
+                  <option value="CFA BCEAO Francs - XOF">CFA BCEAO Francs - XOF</option>
+                )}
+                {this.state.currentItem.currency == "CFA BEAC Francs - XAF" ? (
+                  <option value="CFA BEAC Francs - XAF" selected>
+                  CFA BEAC Francs - XAF
+                  </option>
+                ) : (
+                  <option value="CFA BEAC Francs - XAF">CFA BEAC Francs - XAF</option>
+                )}
+                {this.state.currentItem.currency == "Chile Pesos - CLP" ? (
+                  <option value="Chile Pesos - CLP" selected>
+                  Chile Pesos - CLP
+                  </option>
+                ) : (
+                  <option value="Chile Pesos - CLP">Chile Pesos - CLP</option>
+                )}
+                {this.state.currentItem.currency == "China Yuan Renminbi - CNY" ? (
+                  <option value="China Yuan Renminbi - CNY" selected>
+                  China Yuan Renminbi - CNY
+                  </option>
+                ) : (
+                  <option value="China Yuan Renminbi - CNY">China Yuan Renminbi - CNY</option>
+                )}
+                {this.state.currentItem.currency == "RMB (China Yuan Renminbi) - CNY" ? (
+                  <option value="RMB (China Yuan Renminbi) - CNY" selected>
+                  RMB (China Yuan Renminbi) - CNY
+                  </option>
+                ) : (
+                  <option value="RMB (China Yuan Renminbi) - CNY">RMB (China Yuan Renminbi) - CNY</option>
+                )}
+                {this.state.currentItem.currency == "Colombia Pesos - COP" ? (
+                  <option value="Colombia Pesos - COP" selected>
+                  Colombia Pesos - COP
+                  </option>
+                ) : (
+                  <option value="Colombia Pesos - COP">Colombia Pesos - COP</option>
+                )}
+                {this.state.currentItem.currency == "CFP Francs - XPF" ? (
+                  <option value="CFP Francs - XPF" selected>
+                  CFP Francs - XPF
+                  </option>
+                ) : (
+                  <option value="CFP Francs - XPF">CFP Francs - XPF</option>
+                )}
+                {this.state.currentItem.currency == "Costa Rica Colones - CRC" ? (
+                  <option value="Costa Rica Colones - CRC" selected>
+                  Costa Rica Colones - CRC
+                  </option>
+                ) : (
+                  <option value="Costa Rica Colones - CRC">Costa Rica Colones - CRC</option>
+                )}
+                {this.state.currentItem.currency == "Croatia Kuna - HRK" ? (
+                  <option value="Croatia Kuna - HRK" selected>
+                  Croatia Kuna - HRK
+                  </option>
+                ) : (
+                  <option value="Croatia Kuna - HRK">Croatia Kuna - HRK</option>
+                )}
+                {this.state.currentItem.currency == "Cyprus Pounds - CYP" ? (
+                  <option value="Cyprus Pounds - CYP" selected>
+                  Cyprus Pounds - CYP
+                  </option>
+                ) : (
+                  <option value="Cyprus Pounds - CYP">Cyprus Pounds - CYP</option>
+                )}
+                {this.state.currentItem.currency == "Czech Republic Koruny - CZK" ? (
+                  <option value="Czech Republic Koruny - CZK" selected>
+                  Czech Republic Koruny - CZK
+                  </option>
+                ) : (
+                  <option value="Czech Republic Koruny - CZK">Czech Republic Koruny - CZK</option>
+                )}
+                {this.state.currentItem.currency == "Denmark Kroner - DKK" ? (
+                  <option value="Denmark Kroner - DKK" selected>
+                  Denmark Kroner - DKK
+                  </option>
+                ) : (
+                  <option value="Denmark Kroner - DKK">Denmark Kroner - DKK</option>
+                )}
+                
 
-                <option value="Bahamas Dollars - BSD">
-                  Bahamas Dollars – BSD
-                </option>
-                <option value="Bahrain Dinars - BHD">
-                  Bahrain Dinars – BHD
-                </option>
-                <option value="Bangladesh Taka - BDT">
-                  Bangladesh Taka – BDT
-                </option>
-                <option value="Barbados Dollars - BBD">
-                  Barbados Dollars – BBD
-                </option>
-                <option value="Belgium Francs - BEF">
-                  Belgium Francs – BEF
-                </option>
-                <option value="Bermuda Dollars - BMD">
-                  Bermuda Dollars – BMD
-                </option>
 
-                <option value="Brazil Reais - BRL">Brazil Reais – BRL</option>
-                <option value="Bulgaria Leva - BGN">Bulgaria Leva – BGN</option>
-                <option value="Canada Dollars - CAD">
-                  Canada Dollars – CAD
-                </option>
-                <option value="CFA BCEAO Francs - XOF">
-                  CFA BCEAO Francs – XOF
-                </option>
-                <option value="CFA BEAC Francs - XAF">
-                  CFA BEAC Francs – XAF
-                </option>
-                <option value="Chile Pesos - CLP">Chile Pesos – CLP</option>
-
-                <option value="China Yuan Renminbi - CNY">
-                  China Yuan Renminbi – CNY
-                </option>
-                <option value="RMB (China Yuan Renminbi) - CNY">
-                  RMB (China Yuan Renminbi) – CNY
-                </option>
-                <option value="Colombia Pesos - COP">
-                  Colombia Pesos – COP
-                </option>
-                <option value="CFP Francs - XPF">CFP Francs – XPF</option>
-                <option value="Costa Rica Colones - CRC">
-                  Costa Rica Colones – CRC
-                </option>
-                <option value="Croatia Kuna - HRK">Croatia Kuna – HRK</option>
-
-                <option value="Cyprus Pounds - CYP">Cyprus Pounds – CYP</option>
-                <option value="Czech Republic Koruny - CZK">
-                  Czech Republic Koruny – CZK
-                </option>
-                <option value="Denmark Kroner - DKK">
-                  Denmark Kroner – DKK
-                </option>
                 <option value="Deutsche (Germany) Marks - DEM">
                   Deutsche (Germany) Marks – DEM
                 </option>
@@ -634,6 +1278,7 @@ export class EditItemPage extends Component {
                 <option value="Zambia Kwacha - ZMK">Zambia Kwacha – ZMK</option>
               </select>
             </div>
+
             <div className="form-item">
               <label htmlFor="personal-notes">Personal Notes:</label>
               <input
@@ -644,6 +1289,7 @@ export class EditItemPage extends Component {
                 defaultValue={this.state.currentItem.notes}
               />
             </div>
+
             <div className="form-item">
               <label htmlFor="privacy">
                 Please select this entries' privacy:
@@ -652,15 +1298,23 @@ export class EditItemPage extends Component {
                 <option value="" disabled>
                   Select Privacy:
                 </option>
-                <option value="1">Public</option>
-                <option value="0">Private</option>
+                {this.state.currentItem.is_public == "0" ? (
+                  <option value="Private" selected>
+                  Private
+                  </option>
+                ) : (
+                  <option value="Private">Private</option>
+                )}
+                {this.state.currentItem.is_public == "1" ? (
+                  <option value="Public" selected>
+                  Public
+                  </option>
+                ) : (
+                  <option value="Public">Public</option>
+                )}
               </select>
             </div>
-            {/* <div className="form-item">
-              <a href="#" className="myButton">
-                Cancel
-              </a>
-            </div> */}
+
             <div className="form-item">
               <input
                 type="submit"
