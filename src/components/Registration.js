@@ -106,7 +106,7 @@ export class Registration extends Component {
     return (
       <div>
         <section className="registration">
-          <div className="alert alert-success">
+          {/* <div className="alert alert-success">
             <i className="fas fa-check"></i> <strong>Success</strong> Account
             Activated Sucessfully!!
           </div>
@@ -119,7 +119,7 @@ export class Registration extends Component {
           <div className="alert alert-failure">
             <i className="fas fa-times"></i> <strong>Failure</strong>{" "}
             Registration Failed!! Please see System Adminstrator!!
-          </div>
+          </div> */}
 
           <form className="registration-form" onSubmit={this.handleSubmit}>
             <h1>Travel Bucket Registration</h1>

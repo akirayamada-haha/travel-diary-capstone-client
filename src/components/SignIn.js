@@ -104,7 +104,7 @@ export class SignIn extends Component {
     return (
       <div>
         <section className="sign-in">
-          <div className="alert alert-info">
+          {/* <div className="alert alert-info">
             <i className="fas fa-info"></i> <strong>Info</strong> Please enter
             username and password!
           </div>
@@ -112,7 +112,7 @@ export class SignIn extends Component {
           <div className="alert alert-warning">
             <i className="fas fa-exclamation"></i> <strong>Warning</strong>{" "}
             Username or password incorrect!!
-          </div>
+          </div> */}
 
 
           <form className="sign-in-form" onSubmit={this.handleSubmit}>

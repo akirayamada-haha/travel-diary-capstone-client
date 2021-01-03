@@ -126,9 +126,9 @@ Travel Diary Wireframe
 
 
 
-### 8. API Documentation (to do later)
+### 8. API Documentation
 API Documentation details:
-* (Example) get all users
+* https://www.getpostman.com/collections/23a801dcc5cd426ad96d
 
 
 

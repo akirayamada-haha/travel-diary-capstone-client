@@ -1,14 +1,5 @@
-/*
-The CSS code gets to executed from top to bottom and left ro right
-Basic rules to write CSS
-- write GENERAL rules first (for all the paragraph tags in the website for example) and only after that write CSS for SPECIFIC tags (for example the paragraph tags inside the footer)
-- write the css styles to define for the parent (outside) container and THEN the children (inside containers) of that parent and THEN the children (inside containers) of the child above
-*/
-
-
 /* -------------------------------------
 CSS reset
-Is a short set of CSS rules that resets the styling of all HTML elements to a consistent baseline so the website will look the same on all browsers
 */
 
 * {
@@ -16,7 +7,6 @@ Is a short set of CSS rules that resets the styling of all HTML elements to a co
   padding: 0;
   border: 0;
   font-size: 100%;
-  /*The box-sizing property is used to tell the browser what the sizing properties (width and height) should include border-box.*/
   box-sizing: border-box;
   /*reset Chrome user agent styles*/
   -webkit-margin-before: 0px;
@@ -58,21 +48,17 @@ Is a short set of CSS rules that resets the styling of all HTML elements to a co
 
 /* -------------------------------------
 General styles (General Module, wrapping around the modules below)
-(the styles used everywhere in the page (like the Body) or styles which are used in more than 2 of the modules below (h2, h3, h4, h5, h6, p, a, ul, li))
 */
 
 body {
-  border: 3px solid white;
-  font-family: 'Roboto', sans-serif;
+  /* border: 3px solid white; */
+  font-family: "Roboto", sans-serif;
+  background-image: url("/src/mountains-background.jpg");
 }
-
-/* font-family: 'Pacifico', cursive;
-font-family: 'Roboto', sans-serif;
-font-family: 'Sriracha', cursive; */
 
 h1 {
   margin-top: 60px;
-  font-family: 'Sriracha', cursive;
+  font-family: "Sriracha", cursive;
 }
 
 h2 {
@@ -83,7 +69,9 @@ h3 {
   font-size: 24px;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   text-align: center;
 }
 
@@ -100,6 +88,12 @@ a:hover {
   color: white;
 }
 
+i {
+  margin-left: 10px;
+  margin-right: 10px;
+  display: inline-block;
+}
+
 p {
   text-align: center;
   font-size: 14px;
@@ -114,20 +108,22 @@ section {
 label {
   display: block;
   text-align: center;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 
-input, select {
+input,
+select {
   padding: 5px 10px;
   width: 95%;
   max-width: 250px;
   display: block;
   margin: 20px auto;
   border-radius: 6px;
-  border: 1px solid #CCC;
+  border: 1px solid #ccc;
 }
 
-.myButton, button {
+.myButton,
+button {
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 10px;
@@ -150,13 +146,15 @@ input, select {
   text-shadow: 0px 1px 0px #528009;
   width: 95%;
 }
-.myButton:hover, button:hover {
-  background:linear-gradient(to bottom, #77a809 5%, #89c403 100%);
-  background-color:#77a809;
+.myButton:hover,
+button:hover {
+  background: linear-gradient(to bottom, #77a809 5%, #89c403 100%);
+  background-color: #77a809;
 }
-.myButton:active, button:active {
-  position:relative;
-  top:1px;
+.myButton:active,
+button:active {
+  position: relative;
+  top: 1px;
 }
 
 .buttonWrapper {
@@ -173,31 +171,35 @@ input, select {
   margin-right: 10px;
 }
 
-
-
 /* -------------------------------------
 Header styles (Main Module)
-(all the styles inside the < header > or < nav > tags)
 */
 
 header {
   width: 100%;
-  border-bottom: 2px solid grey;
+  border-bottom: 1px solid black;
   display: block;
   position: fixed;
   top: 0;
-  background: -webkit-linear-gradient(top, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+  background: rgb(238, 220, 174);
+  background: radial-gradient(
+    circle,
+    rgba(238, 220, 174, 1) 0%,
+    rgba(113, 163, 223, 1) 100%
+  );
   padding: 20px 10px;
 }
 
-header h4, header nav {
+header h4,
+header nav {
   width: auto;
   display: inline-block;
 }
 
 header h4 {
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  color: white;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  color: blue;
   size: 120%;
 }
 
@@ -223,7 +225,6 @@ header nav ul li:last-child {
 
 /* -------------------------------------
 Content styles (Main Module)
-(all the styles inside the < sections > or < aside > tags)
 */
 
 main.container {
@@ -232,15 +233,20 @@ main.container {
 }
 
 form {
-  color: #FFFFFF;
+  color: #000;
 }
 
 .sign-in {
   border: 2px black solid;
-  background-color: #EEEEEE;
   margin-top: 40px;
   padding: 0px 10px 40px 10px;
-  background: -webkit-linear-gradient(top, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+  background: rgb(238, 220, 174);
+  background: radial-gradient(
+    circle,
+    rgba(238, 220, 174, 0.5) 0%,
+    rgba(113, 163, 223, 0.3) 100%
+  );
+
   width: 80%;
 }
 
@@ -248,35 +254,44 @@ form {
   border: 2px black solid;
   margin-top: 40px;
   padding: 0px 10px 40px 10px;
-  background: -webkit-linear-gradient(top, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
-   width: 80%;
+  background: rgb(238, 220, 174);
+  background: radial-gradient(
+    circle,
+    rgba(238, 220, 174, 0.5) 0%,
+    rgba(113, 163, 223, 0.3) 100%
+  );
+  width: 80%;
 }
 
 section {
   border: 2px black solid;
   margin-top: 40px;
   padding: 0px 10px 40px 10px;
-  background: -webkit-linear-gradient(top, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+  background: rgb(238, 220, 174);
+  background: radial-gradient(
+    circle,
+    rgba(238, 220, 174, 0.8) 0%,
+    rgba(113, 163, 223, 0.9) 100%
+  );
   width: 80%;
 }
 
 section.item-wrapper {
-    display: block;
-    width: 100%;
-    border-bottom: 1px solid white;
+  display: block;
+  width: 100%;
+  border-bottom: 1px solid white;
 }
 
 section .item-wrapper:last-child {
-    border-bottom: none;
+  border-bottom: none;
 }
 
 section .item-wrapper .item-column {
-    width: 49%;
-    display: inline-block;
-    /* border: 1px solid black; */
-    vertical-align: top;
-    padding: 15px;
-    text-align: left;
+  width: 49%;
+  display: inline-block;
+  vertical-align: top;
+  padding: 15px;
+  text-align: left;
 }
 
 section .item-wrapper .item-column .item-image {
@@ -286,8 +301,8 @@ section .item-wrapper .item-column .item-image {
 }
 
 section .item-wrapper .item-column h3.item-title {
-    text-align: left;
-    margin-bottom: 15px;
+  text-align: left;
+  margin-bottom: 15px;
 }
 
 section .item-wrapper .item-column p.item-notes {
@@ -304,9 +319,9 @@ section .item-wrapper .item-column .item-details {
 }
 
 section .item-wrapper .item-column .item-details li {
-    border-top: 1px solid white;
-    padding-top: 10px;
-    padding-bottom: 10px;
+  border-top: 1px solid white;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 section .item-wrapper .item-column .item-details li:last-child {
@@ -314,11 +329,10 @@ section .item-wrapper .item-column .item-details li:last-child {
 }
 
 div.blueTable {
-  border: 1px solid #AAAAAA;
+  border: 1px solid #aaaaaa;
   margin-top: 10px;
-  background-color: #EEEEEE;
+  background-color: #eeeeee;
   width: 95%;
-  /* max-width: 350px; */
   text-align: left;
   border-collapse: collapse;
   margin-left: auto;
@@ -340,8 +354,9 @@ div.blueTable {
   float: none !important;
 }
 
-.divTable.blueTable .divTableCell, .divTable.blueTable .divTableHead {
-  border: 1px solid #AAAAAA;
+.divTable.blueTable .divTableCell,
+.divTable.blueTable .divTableHead {
+  border: 1px solid #aaaaaa;
   padding: 10px 8px;
 }
 
@@ -350,23 +365,28 @@ div.blueTable {
 }
 
 .divTable.blueTable .divTableRow:nth-child(even) {
-  background: #D0E4F5;
+  background: #d0e4f5;
 }
 
 .divTable.blueTable .divTableHeading {
-  background: #1C6EA4;
-  background: -moz-linear-gradient(top, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
-  background: -webkit-linear-gradient(top, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
-  background: linear-gradient(to bottom, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+  background: #1c6ea4;
+  background: -moz-linear-gradient(top, #5592bb 0%, #327cad 66%, #1c6ea4 100%);
+  background: -webkit-linear-gradient(
+    top,
+    #5592bb 0%,
+    #327cad 66%,
+    #1c6ea4 100%
+  );
+  background: linear-gradient(to bottom, #5592bb 0%, #327cad 66%, #1c6ea4 100%);
   border-bottom: 2px solid #444444;
 }
 
 .divTable.blueTable .divTableHeading .divTableHead {
   font-size: 15px;
   font-weight: bold;
-  color: #FFFFFF;
+  color: #ffffff;
   text-align: left;
-  border-left: 2px solid #D0E4F5;
+  border-left: 2px solid #d0e4f5;
 }
 
 .divTable.blueTable .divTableHeading .divTableHead:first-child {
@@ -378,13 +398,13 @@ div.blueTable {
 }
 
 .blueTable .tableFootStyle .links {
-     text-align: right;
+  text-align: right;
 }
 
-.blueTable .tableFootStyle .links a{
+.blueTable .tableFootStyle .links a {
   display: inline-block;
-  background: #1C6EA4;
-  color: #FFFFFF;
+  background: #1c6ea4;
+  color: #ffffff;
   padding: 2px 8px;
   border-radius: 5px;
 }
@@ -394,33 +414,46 @@ div.blueTable {
 }
 
 .blueTable.outerTableFooter .tableFootStyle {
-  padding: 3px 5px; 
+  padding: 3px 5px;
 }
 
-.divTable{ display: table; }
-.divTableRow { display: table-row; }
-.divTableHeading { display: table-header-group;}
-.divTableCell, .divTableHead { display: table-cell;}
-.divTableHeading { display: table-header-group;}
-.divTableFoot { display: table-footer-group;}
-.divTableBody { display: table-row-group;}
-
-
+.divTable {
+  display: table;
+}
+.divTableRow {
+  display: table-row;
+}
+.divTableHeading {
+  display: table-header-group;
+}
+.divTableCell,
+.divTableHead {
+  display: table-cell;
+}
+.divTableHeading {
+  display: table-header-group;
+}
+.divTableFoot {
+  display: table-footer-group;
+}
+.divTableBody {
+  display: table-row-group;
+}
 
 .myButton.red {
-  box-shadow:inset 0px 1px 0px 0px #f5978e;
-  background:linear-gradient(to bottom, #f24537 5%, #c62d1f 100%);
-  background-color:#f24537;
-  border:1px solid #d02718;
-  text-shadow:0px 1px 0px #810e05;
+  box-shadow: inset 0px 1px 0px 0px #f5978e;
+  background: linear-gradient(to bottom, #f24537 5%, #c62d1f 100%);
+  background-color: #f24537;
+  border: 1px solid #d02718;
+  text-shadow: 0px 1px 0px #810e05;
 }
 .myButton.red:hover {
-  background:linear-gradient(to bottom, #c62d1f 5%, #f24537 100%);
-  background-color:#c62d1f;
+  background: linear-gradient(to bottom, #c62d1f 5%, #f24537 100%);
+  background-color: #c62d1f;
 }
 .myButton.red:active {
-  position:relative;
-  top:1px;
+  position: relative;
+  top: 1px;
 }
 
 .alert {
@@ -429,7 +462,6 @@ div.blueTable {
   text-align: center;
   border-radius: 6px;
   color: black;
-  
 }
 
 .alert-success {
@@ -438,11 +470,10 @@ div.blueTable {
 
 .alert-warning {
   background-color: lightgoldenrodyellow;
-  
 }
 
 .alert-failure {
-  background-color: lightpink
+  background-color: lightpink;
 }
 
 .alert-info {
@@ -453,10 +484,8 @@ div.blueTable {
   margin-right: 60px;
 }
 
-
 /* -------------------------------------
 Footer styles (Main Module)
-(all the styles inside the < footer > tag)
 */
 
 footer {
@@ -483,52 +512,18 @@ footer a:hover i.far {
   color: #081e6f;
 }
 
-/* -------------------------------------
-place all the desktop styles above this line
-Responsive styles
-(the very last module in the CSS, contains all the media queries and it is dealing with the compatibility with mobiles and tablets)
-place all the mobile tables styles below this line
-*/
-
-/* mobile first approach = (the website was built initialy for mobiles and it will be adapted for desktop)
-This is the ideal way to built websites because it is much easier to adapt from a small screen and low computing power (mobiles) to a large screen and high computing power (desktops)
-*/
-
-/*iPhone portrait*/
-@media only screen and (min-width: 320px) {
+/*large desktop*/
+@media only screen and (max-width: 1600px) {
   body {
-      border: 3px solid purple;
-  }
-
-}
-
-/*iPhone landscape*/
-@media only screen and (min-width: 480px) {
-  body {
-      border: 3px solid green;
-  }
-}
-
-/*Android landscape*/
-@media only screen and (min-width: 640px) {
-  body {
-      border: 3px solid brown;
-  }
-}
-
-/*iPad potrait*/
-@media only screen and (min-width: 768px) {
-  body {
-      border: 3px solid red;
+      /* border: 3px solid yellow; */
   }
 }
 
 /*iPad lanscape / small laptop*/
-@media only screen and (min-width: 1024px) {
+@media only screen and (max-width: 1024px) {
   body {
-      border: 3px solid blue;
+      /* border: 3px solid blue; */
   }
-
   div.blueTable {
     margin: 0 0.3em;
     margin-bottom: 0.5em;
@@ -538,15 +533,45 @@ This is the ideal way to built websites because it is much easier to adapt from 
   }
 }
 
-/*large desktop*/
-@media only screen and (min-width: 1600px) {
+/*iPad potrait*/
+@media only screen and (max-width: 768px) {
   body {
-      border: 3px solid yellow;
+      /* border: 3px solid red; */
   }
 }
 
+/*Android landscape*/
+@media only screen and (max-width: 640px) {
+  body {
+      /* border: 3px solid pink; */
+  }
+}
 
-  
+/*iPhone landscape*/
+@media only screen and (max-width: 480px) {
+  body {
+      /* border: 3px solid green; */
+  }
+  header nav ul li a span.navlink-text {
+    display: none;
+  }
+  section {
+    border: 0;
+    width: 100%;
+  }
+  section .item-wrapper .item-column {
+    width: 100%;
+    display: block;
+  }
+  .myButton,
+  button {
+    max-width: none;
+  }
+}
 
-
-  
+/*iPhone portrait*/
+@media only screen and (max-width: 320px) {
+  body {
+      /* border: 3px solid purple; */
+  }
+}
