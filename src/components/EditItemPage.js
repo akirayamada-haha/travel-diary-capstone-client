@@ -1858,18 +1858,18 @@ export class EditItemPage extends Component {
                   Select Privacy:
                 </option>
                 {this.state.currentItem.is_public == "0" ? (
-                  <option value="Private" selected>
+                  <option value="0" selected>
                     Private
                   </option>
                 ) : (
-                  <option value="Private">Private</option>
+                  <option value="0">Private</option>
                 )}
                 {this.state.currentItem.is_public == "1" ? (
-                  <option value="Public" selected>
+                  <option value="1" selected>
                     Public
                   </option>
                 ) : (
-                  <option value="Public">Public</option>
+                  <option value="1">Public</option>
                 )}
               </select>
             </div>
