@@ -2,10 +2,8 @@
 A hub for travel enthusiasts to store information and see public information stored by other users
 
 
-
 ### 1. Working Prototype
 You can access a working prototype of the React app here: https://travel-diary-capstone.vercel.app/ and Node app here: https://travel-diary-capstone.herokuapp.com/
-
 
 
 ### 2. User Stories 
@@ -42,6 +40,10 @@ This app is for two types of users: a visitor and a logged-in user
 * I want to be able to enter a new keyword for a pinned map image, select (currency, language, rating, cost, type, visited), and add notes,
 * So I can save my item to the dashboard.
 
+###### Edit Item Page (Importance - High) (Est: 3h)
+* As a logged-in user,
+* I want to be able to edit an item, starting with all previously selected options,
+* So I can update my item and save it to the dashboard.
 
 
 ### 3. Functionality 
@@ -54,10 +56,10 @@ The app's functionality includes:
 * A logged in user should see a dashboard with all saved items and the ability to add an item
 * Every item can be 'checked/un-checked' and will have a tag of 'Been there done that' or 'On the Bucket List'
 * Selecting 'add item' will route to a new form 
-* The 'add item' form allows the user to enter a new keyword
+* The 'add item' form allows the user to enter a new, mandatory, keyword
 * A user's keyword should reroute to a google search and return a location
 * A user's location search should pin a map image (https://developers.google.com/maps/documentation/embed/get-started)
-* If a user's search results don't work, show the error: 'no places found matching this keyword'
+* If a user's search results don't work, show an error
 * A user can select from a number of practical options to further describe the item (currency, language, grading system(1 - 5 stars), cost($, $$, $$$), type (historical, romantic, outdoor business, tourist, religious, sport, educational)
 * There will be a mandatory selection for 'visited vs future plan'
 * A section exists for personal notes at the bottom

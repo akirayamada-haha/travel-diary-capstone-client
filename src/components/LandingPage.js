@@ -11,7 +11,7 @@ export class LandingPage extends Component {
   }
 
   componentDidMount() {
-    let getpublicItemsUrl = `${config.API_ENDPOINT}/items`;
+    let getpublicItemsUrl = `${config.API_ENDPOINT}/items/public`;
 
     fetch(getpublicItemsUrl)
       .then((itemsInList) => itemsInList.json())
