@@ -228,7 +228,7 @@ export class DashboardPage extends Component {
                 defaultValue="On My List!"
               ></input>
               <button type="submit" className="myButton">
-                <i className="fas "></i> Change To: 'On My List!'
+                <i className="fas "></i> ADD TO MY LIST!
               </button>
             </form>
           );
@@ -245,8 +245,7 @@ export class DashboardPage extends Component {
                 defaultValue="Been There Done That!"
               ></input>
               <button type="submit" className="myButton">
-                <i className="fas "></i> Change To: 'Been There Done
-                That!'
+                <i className="fas "></i> CROSS OFF MY LIST!
               </button>
             </form>
           );
@@ -394,7 +393,7 @@ export class DashboardPage extends Component {
                 <li className="item-actions">
                   <div className="form-item">
                     <Link to={editItemUrl} className="myButton">
-                      Edit
+                    <i class="fas fa-edit"></i>EDIT
                     </Link>
                   </div>
                   <div className="form-item">
@@ -405,7 +404,7 @@ export class DashboardPage extends Component {
                         defaultValue={item.id}
                       ></input>
                       <button type="submit" className="myButton">
-                        <i className="fas fa-trash-alt"></i> Delete
+                        <i className="fas fa-trash-alt"></i> DELETE
                       </button>
                     </form>
                   </div>

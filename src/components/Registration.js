@@ -151,7 +151,7 @@ export class Registration extends Component {
               />
               {/* <label htmlFor="getStarted">Let's Get Started!</label> */}
               <div className="form-item">
-                <input name="getStarted" type="submit" value="Register" className="myButton"/>
+                <input name="getStarted" type="submit" value="REGISTER" className="myButton"/>
                 <p>
                   Already have an account? <NavLink to="/sign-in" className="new-user-cta">Sign In Here...</NavLink>
                 </p>

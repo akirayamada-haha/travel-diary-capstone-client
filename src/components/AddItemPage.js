@@ -564,7 +564,7 @@ export class AddItemPage extends Component {
               </a>
             </div> */}
             <div className="form-item">
-              <input type="submit" value="Create" className="myButton" />
+              <input type="submit" value="SUBMIT" className="myButton" />
             </div>
           </form>
         </section>

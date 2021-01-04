@@ -137,7 +137,7 @@ export class SignIn extends Component {
               required
             />
             {/* <label htmlFor="get-started">Let's Get Going!</label> */}
-            <input name="get-started" type="submit" value="Log In" className="myButton"/>
+            <input name="get-started" type="submit" value="LOG-IN" className="myButton"/>
             <p className="login-demo">Demo Email: test@gmail.com<br/>Demo Password: TestPassword123</p>
             <p>
               Need to create an account?<NavLink to='/registration' className="new-user-cta"> Create an Account Here...</NavLink>

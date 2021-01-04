@@ -76,6 +76,7 @@ h3 {
 }
 
 div {
+  padding-top: 10px;
   margin-bottom: 4px;
 }
 
@@ -151,6 +152,13 @@ button:hover {
   background: linear-gradient(to bottom, #77a809 5%, #89c403 100%);
   background-color: #77a809;
 }
+.deleteItemForm .myButton:hover {
+  box-shadow: inset 0px 1px 0px 0px #e27171;
+  background: linear-gradient(to bottom, #a80909 5%, #c40303 100%);
+  background-color: #a80909;
+  border: 1px solid #b80707;
+  text-shadow: 0px 1px 0px #800909;
+}
 .myButton:active,
 button:active {
   position: relative;
@@ -163,12 +171,20 @@ button:active {
   display: block;
 }
 
-.selected-icon {
+.type-icon {
+  margin-right: 10px;
+}
+
+.type-icon.selected-icon {
   color: red;
 }
 
-.type-icon {
-  margin-right: 10px;
+.fa-star.selected-icon {
+  color: rgb(255, 230, 0);
+}
+
+.fa-dollar-sign.selected-icon {
+  color: rgb(16, 201, 26);
 }
 
 /* -------------------------------------
@@ -177,7 +193,7 @@ Header styles (Main Module)
 
 header {
   width: 100%;
-  border-bottom: 1px solid black;
+  border-bottom: 10px groove rgb(95, 146, 214);
   display: block;
   position: fixed;
   top: 0;
@@ -237,7 +253,7 @@ form {
 }
 
 .sign-in {
-  border: 2px black solid;
+  border: 10px groove rgb(95, 146, 214);
   margin-top: 40px;
   padding: 0px 10px 40px 10px;
   background: rgb(238, 220, 174);
@@ -251,7 +267,7 @@ form {
 }
 
 .registration {
-  border: 2px black solid;
+  border: 10px groove rgb(95, 146, 214);
   margin-top: 40px;
   padding: 0px 10px 40px 10px;
   background: rgb(238, 220, 174);
@@ -264,7 +280,7 @@ form {
 }
 
 section {
-  border: 2px black solid;
+  border: 10px groove rgb(95, 146, 214);
   margin-top: 40px;
   padding: 0px 10px 40px 10px;
   background: rgb(238, 220, 174);
@@ -324,9 +340,9 @@ section .item-wrapper .item-column .item-details li {
   padding-bottom: 10px;
 }
 
-section .item-wrapper .item-column .item-details li:last-child {
+/* section .item-wrapper .item-column .item-details li:last-child {
   border-bottom: 1px solid white;
-}
+} */
 
 div.blueTable {
   border: 1px solid #aaaaaa;

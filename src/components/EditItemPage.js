@@ -1877,7 +1877,7 @@ export class EditItemPage extends Component {
             <div className="form-item">
               <input
                 type="submit"
-                value="Confirm Changes"
+                value="CONFIRM CHANGES"
                 className="myButton"
               />
             </div>

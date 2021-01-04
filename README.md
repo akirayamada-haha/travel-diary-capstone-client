@@ -9,10 +9,6 @@ You can access a working prototype of the React app here: https://travel-diary-c
 ### 2. User Stories 
 This app is for two types of users: a visitor and a logged-in user
 
-1--user stories
-2--grey box wireframe html only
-3--add css responsive and accessible to the grey box wireframes
-4--reactify the grey-box wireframes using this guide here (https://github.com/mariusbanea/web-developers-toolkit/blob/master/capstone-projects/steps-to-convert-html-to-react.md)
 
 ###### Landing Page (Importance - Medium) (Est: 2h)
 * as a visitor
@@ -68,8 +64,6 @@ The app's functionality includes:
 * Saved items can be edited and/or deleted 
 * A succesful save/delete will reroute to the dashboard with the item added to the top
 * Each new item added will also be added to the top of the public list on the home page
-* --low priority-- A single filter dropdown to select low-to-high/high-to-low (rating, cost)
-* --low priority-- A user's dashboard will have a search bar to search their own saved items by title
 
 
 
@@ -100,6 +94,7 @@ Travel Diary Wireframe
         * __Navbar.js__ (stateless) -
         * __DashBoard.js__ (stateful) - gets the _"prop name"_ and the _"callback prop name"_ from the __App.js__
         * __AddItem.js__ (stateful) - gets the _"prop name"_ and the _"callback prop name"_ from the __App.js__
+        * __EditItem.js__ (stateful) - gets the _"prop name"_ and the _"callback prop name"_ from the __App.js__
 
 
 
@@ -137,13 +132,19 @@ API Documentation details:
 :-------------------------:
 ![Landing Page](/github-images/screenshots/landing-page-screenshot.png)
 Register Page
-![Register Page](/github-images/screenshots/register-page-screenshot.png)
+![Sign In Page](/github-images/screenshots/sign-in-page-screenshot.png)
+![Registration Page](/github-images/screenshots/registration-page-screenshot.png)
+![Dashboard Page](/github-images/screenshots/dashboard-page-screenshot.png)
+![Add Item Page](/github-images/screenshots/add-item-page-screenshot.png)
+![Edit Item Page](/github-images/screenshots/edit-item-page-screenshot.png)
 
 
 
-### 10. Development Roadmap (to do later)
+### 10. Development Roadmap
 This is v1.0 of the app, but future enhancements are expected to include:
-* (Example) add more functionality
+* A single filter dropdown to select low-to-high/high-to-low (rating, cost)
+* A user's dashboard will have a search bar to search their own saved items by keyword
+
 
 
 
