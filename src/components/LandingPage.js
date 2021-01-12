@@ -16,11 +16,11 @@ export class LandingPage extends Component {
     fetch(getpublicItemsUrl)
       .then((itemsInList) => itemsInList.json())
       .then((itemsInList) => {
-        console.log(itemsInList);
+        // console.log(itemsInList);
         this.setState({
           publicItems: itemsInList,
         });
-        console.log(this.state);
+        // console.log(this.state);
       })
 
       .catch((error) => this.setState({ error }));

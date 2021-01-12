@@ -25,11 +25,11 @@ export class DashboardPage extends Component {
     fetch(getItemsByUserIdUrl)
       .then((itemsInList) => itemsInList.json())
       .then((itemsInList) => {
-        console.log(itemsInList);
+        // console.log(itemsInList);
         this.setState({
           itemsByUserId: itemsInList,
         });
-        console.log(this.state);
+        // console.log(this.state);
       })
 
       .catch((error) => this.setState({ error }));
@@ -46,10 +46,10 @@ export class DashboardPage extends Component {
       data[value[0]] = value[1];
     }
 
-    console.log(data);
+    // console.log(data);
 
     let { itemId } = data;
-    console.log(itemId);
+    // console.log(itemId);
 
     fetch(`${config.API_ENDPOINT}/items/${itemId}`, {
       method: "DELETE",
@@ -72,16 +72,16 @@ export class DashboardPage extends Component {
       data[value[0]] = value[1];
     }
 
-    console.log(data);
+    // console.log(data);
 
     let { itemId, newItemCategory } = data;
-    console.log(itemId, newItemCategory);
+    // console.log(itemId, newItemCategory);
 
     let payload = {
       category: newItemCategory,
     };
 
-    console.log("the payload: ", payload);
+    // console.log("the payload: ", payload);
     //define the API call parameters
     const options = {
       method: "PATCH",
@@ -104,7 +104,7 @@ export class DashboardPage extends Component {
       // use the json api output
       .then((data) => {
         //check if there is meaningfull data
-        console.log(data);
+        // console.log(data);
         // check if there are no results
         if (data.totalItems === 0) {
           throw new Error("No data found");

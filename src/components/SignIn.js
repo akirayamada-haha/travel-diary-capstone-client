@@ -55,7 +55,7 @@ export class SignIn extends Component {
     for (let value of formData) {
       data[value[0]] = value[1];
     }
-    console.log(data);
+    // console.log(data);
     let { loginEmail, loginPassword } = data;
     if (this.validateEmail(loginEmail) === "") {
       this.setState({
@@ -73,7 +73,7 @@ export class SignIn extends Component {
     });
 
     //check if the state is populated with the search params data
-    console.log(this.state.params);
+    // console.log(this.state.params);
 
     AuthApiService.postLogin({
       email: loginEmail, 
@@ -81,16 +81,16 @@ export class SignIn extends Component {
     })
 
     .then(response => {
-      console.log("response ID", response)
+      // console.log("response ID", response)
       TokenService.saveAuthToken(response.authToken)
       TokenService.saveUserId(response.userId)
       window.location ='/dashboard-page'
     })
     .then(response => {
-      console.log("response:",response)
+      // console.log("response:",response)
     })
     .catch(err => {
-      console.log(err);
+      // console.log(err);
     });   
   };
 

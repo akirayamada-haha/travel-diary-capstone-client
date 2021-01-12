@@ -54,7 +54,7 @@ export class Registration extends Component {
     for (let value of formData) {
       data[value[0]] = value[1];
     }
-    console.log(data);
+    // console.log(data);
     let { signUpEmail, signUpPassword, verifyPassword } = data;
     if (this.validateEmail(signUpEmail) === "") {
       this.setState({
@@ -76,7 +76,7 @@ export class Registration extends Component {
       });
 
       //check if the state is populated with the search params data
-      console.log(this.state.params);
+      // console.log(this.state.params);
 
       AuthApiService.postUser({
         email: signUpEmail,
@@ -84,7 +84,7 @@ export class Registration extends Component {
       })
 
         .then((response) => {
-          console.log("user:", response);
+          // console.log("user:", response);
           TokenService.saveAuthToken(response.authToken);
           TokenService.saveUserId(response.id);
           window.location = "/dashboard-page";

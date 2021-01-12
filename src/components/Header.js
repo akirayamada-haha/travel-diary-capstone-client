@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 
 export class Header extends Component {
   logOutClick = () => {
-    console.log("Logging out");
+    // console.log("Logging out");
     TokenService.clearAuthToken();
     TokenService.getUserId = (id) => {
       // console.log(id)

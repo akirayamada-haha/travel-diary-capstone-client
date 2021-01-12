@@ -16,7 +16,7 @@ export class EditItemPage extends Component {
 
   componentDidMount() {
     let currentUser = TokenService.getUserId();
-    console.log(currentUser);
+    // console.log(currentUser);
 
     //if the user is not logged in, send him to landing page
     if (!TokenService.hasAuthToken()) {
@@ -25,7 +25,7 @@ export class EditItemPage extends Component {
 
     const itemId = this.props.match.params.itemId;
 
-    console.log(itemId);
+    // console.log(itemId);
 
     let url = `${config.API_ENDPOINT}/items/${itemId}`;
 
@@ -35,7 +35,7 @@ export class EditItemPage extends Component {
       .then((response) => response.json())
 
       .then((data) => {
-        console.log(data);
+        // console.log(data);
 
         this.setState({
           currentItem: data,
@@ -43,7 +43,7 @@ export class EditItemPage extends Component {
       })
 
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
   }
 
@@ -59,7 +59,7 @@ export class EditItemPage extends Component {
     for (let value of formData) {
       userInputData[value[0]] = value[1];
     }
-    console.log(userInputData);
+    // console.log(userInputData);
     // let { difficulty, type } = data;
 
     let payload = {
@@ -75,7 +75,7 @@ export class EditItemPage extends Component {
       is_public: parseInt(userInputData.is_public),
     };
 
-    console.log("the payload: ", payload);
+    // console.log("the payload: ", payload);
     //define the API call parameters
     const options = {
       method: "PATCH",
@@ -100,7 +100,7 @@ export class EditItemPage extends Component {
       // use the json api output
       .then((data) => {
         //check if there is meaningfull data
-        console.log(data);
+        // console.log(data);
         // check if there are no results
         if (data.totalItems === 0) {
           throw new Error("No data found");
