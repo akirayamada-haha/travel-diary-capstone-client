@@ -283,7 +283,7 @@ form {
   width: 80%;
 }
 
-section {
+section:not(.contact) {
   border: 10px groove rgb(95, 146, 214);
   margin-top: 40px;
   padding: 0px 10px 40px 10px;
@@ -410,6 +410,7 @@ footer {
 
 section.contact {
   text-align: center;
+  margin-bottom: 25px;
 }
 
 section.contact ul {
