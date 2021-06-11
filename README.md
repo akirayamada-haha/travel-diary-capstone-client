@@ -2,11 +2,11 @@
 A hub for travel enthusiasts to store information and see public information stored by other users
 
 
-### 1. Working Prototype
+### Working Prototype
 You can access a working prototype of the React app here: https://travel-diary-capstone.vercel.app/ and Node app here: https://travel-diary-capstone.herokuapp.com/
 
 
-### 2. User Stories 
+### User Stories 
 This app is for two types of users: a visitor and a logged-in user
 
 
@@ -42,7 +42,7 @@ This app is for two types of users: a visitor and a logged-in user
 * So I can update my item and save it to the dashboard.
 
 
-### 3. Functionality 
+### Functionality 
 The app's functionality includes:
 * A persistent nav-bar to navigate to home, dashboard, and log-in/log-out
 * Every User has the ability to create an account, log in or log-out
@@ -70,21 +70,21 @@ The app's functionality includes:
 
 
 
-### 4. Technology
+### Technology
 * Front-End: HTML5, CSS3, JavaScript ES6, React
 * Back-End: Node.js, Express.js, Mocha, Chai, RESTful API Endpoints, Postgres
 * Development Environment: Heroku, DBeaver
 
 
 
-### 5. Wireframes
+### Wireframes
 Travel Diary Wireframe
 :-------------------------:
 ![Travel Diary Wireframe](/github-images/wireframes/travel-diary-wireframe.png)
 
 
 
-### 6. Front-end Structure - React Components Map 
+### Front-end Structure - React Components Map 
 * __Index.js__ (stateless)
     * __App.js__ (stateful)
         * __LandingPage.js__ (stateful) - gets the _"prop name"_ and the _"callback prop name"_ from the __App.js__
@@ -98,7 +98,7 @@ Travel Diary Wireframe
 
 
 
-### 7. Back-end Structure - Business Objects 
+### Back-end Structure - Business Objects 
 * users (database table)
     * user_id
     * email (email validation)
@@ -121,13 +121,13 @@ Travel Diary Wireframe
 
 
 
-### 8. API Documentation
+### API Documentation
 API Documentation details:
 * https://www.getpostman.com/collections/23a801dcc5cd426ad96d
 
 
 
-### 9. Screenshots (to do later) one for every user story
+### Screenshots (to do later) one for every user story
 (Example) Landing Page
 :-------------------------:
 ![Landing Page](/github-images/screenshots/landing-page-screenshot.png)
@@ -140,7 +140,7 @@ Register Page
 
 
 
-### 10. Development Roadmap
+### Development Roadmap
 This is v1.0 of the app, but future enhancements are expected to include:
 * A single filter dropdown to select low-to-high/high-to-low (rating, cost)
 * A user's dashboard will have a search bar to search their own saved items by keyword
@@ -148,7 +148,7 @@ This is v1.0 of the app, but future enhancements are expected to include:
 
 
 
-### 11. How to run it
+### How to run it
 Use command line to navigate into the project folder and run the following in terminal
 
 ##### Local React scripts
