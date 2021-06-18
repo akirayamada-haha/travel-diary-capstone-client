@@ -127,15 +127,19 @@ API Documentation details:
 
 
 
-### Screenshots (to do later) one for every user story
-(Example) Landing Page
+### Screenshots
+Landing Page
 :-------------------------:
 ![Landing Page](/github-images/screenshots/landing-page-screenshot.png)
-Register Page
+Sign In Page
 ![Sign In Page](/github-images/screenshots/sign-in-page-screenshot.png)
+Registration Page
 ![Registration Page](/github-images/screenshots/registration-page-screenshot.png)
+Dashboard Page
 ![Dashboard Page](/github-images/screenshots/dashboard-page-screenshot.png)
+Add Item Page
 ![Add Item Page](/github-images/screenshots/add-item-page-screenshot.png)
+Edit Item Page
 ![Edit Item Page](/github-images/screenshots/edit-item-page-screenshot.png)
 
 
